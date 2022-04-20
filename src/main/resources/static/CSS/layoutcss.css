@@ -1,0 +1,178 @@
+body {
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+#navbar {
+    overflow: hidden;
+    background-image: linear-gradient(to right, #ff8b26, #ffaf26);
+    z-index: 2;
+}
+
+#navbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+}
+.login-section {
+    float: right;
+    color: black !important;
+}
+    .login-section > a {
+        color: black !important;
+    }
+    .content {
+        padding: 16px;
+    }
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+    
+.sticky + .content {
+    padding-top: 60px;
+}
+
+.search-logo-section {
+    overflow: hidden;
+}
+    .search-logo-section img {
+        float: left;
+        display: block;
+        color: black;
+        text-align: center;
+        text-decoration: none;
+    }
+    .search-logo-section .search-container {
+        margin-top: 30px;
+        margin-right: 400px;
+        float: right;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #ff8b26;
+    }
+
+.search-logo-section input[type=text] {
+    padding: 7px;
+    font-size: 17px;
+    border: none;
+}
+
+    .search-logo-section .search-container button {
+        float: right;
+        padding: 7px 20px;
+        background: #ddd;
+        font-size: 17px;
+        border: none;
+        cursor: pointer;
+        background-color: #ff8b26;
+    }
+
+    .search-logo-section .search-container button:hover {
+        background: #ccc;
+    }
+
+@media screen and (max-width: 600px) {
+    .search-logo-section .search-container {
+        float: none;
+    }
+
+        .search-logo-section a, .search-logo-section input[type=text], .search-logo-section .search-container button {
+            float: none;
+            display: block;
+            text-align: left;
+            width: 100%;
+            margin: 0;
+            padding: 14px;
+        }
+
+    .search-logo-section input[type=text] {
+        border: 1px solid #ccc;
+    }
+}
+.cart {
+    float: right;
+    margin-right: -580px;
+    margin-top: 40px;
+}
+.footer-content {
+    display: inline-block;
+    width: 30%;
+}
+
+.footer-1 {
+    background-color: #000;
+    padding-left: 20%;
+    padding-right: 10%;
+}
+
+.footer-2 {
+    background-color: #a3e2ff;
+    padding-left: 20%;
+    padding-right: 10%;
+}
+
+.footer-content .nav-column .navitem {
+    display: flex;
+    color: white !important;
+    text-decoration: none;
+    font-size:14px;
+    padding-bottom:5px;
+}
+
+.footer-content .nav-column .border-nav {
+    margin-left: 0px;
+    padding-bottom: 20px;
+}
+
+.footer-content .nav-column .navitem:hover {
+    opacity: 0.8;
+}
+
+.footer-content .nav-column .nav-header {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.footer-content {
+    padding-bottom: 24px;
+    display:inline-flex;
+}
+.nav-column .border-nav {
+    border-bottom: solid;
+    border-color: darkgrey;
+    width: 50%;
+    margin-left: 16px;
+}
+.nav-column{
+    margin-top:20px
+}
+.nav-header:hover {
+    opacity: 1 !important;
+    color: #337ab7 !important;
+}
