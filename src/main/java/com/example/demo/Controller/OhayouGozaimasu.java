@@ -10,7 +10,10 @@ public class OhayouGozaimasu {
 	@GetMapping
     String getPeople(Model model){
         model.addAttribute("something","some thing from controller");
-        return "SignAndLog";
+        return "_layout";
     }
-
+    @GetMapping("/test")
+    public String about() {
+        return "test";
+    }
 }
