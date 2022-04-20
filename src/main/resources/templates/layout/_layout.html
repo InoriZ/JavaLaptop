@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="en"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,13 +11,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-    <link th:href="@{/CSS/layoutcss.css}" rel="stylesheet" />
+    <link href="/CSS/layoutcss.css" rel="stylesheet" />
 </head>
 
 <body>
     <div class="search-logo-section">
         <div class="container">
-            <div class="logo"><img height="100" th:src="@{../Image/Logo1.jpg}" /></div>
+            <div class="logo"><img height="100" src="/Image/Logo1.jpg" /></div>
             <div class="search-container">
                 <form action="/action_page.php">
                     <input type="text" placeholder="Tìm kiếm sản phẩm..." name="search">

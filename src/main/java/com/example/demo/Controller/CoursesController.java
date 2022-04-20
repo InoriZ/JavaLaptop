@@ -1,5 +1,6 @@
 package com.example.demo.Controller;
 
+import com.example.demo.Model.Courses;
 import com.example.demo.Service.CoursesService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,11 @@ public class CoursesController {
     private CoursesService coursesservice;
     @GetMapping("/OhayouGozaimasu/test")
     public String viewHomePage(Model model){
-        model.addAttribute("listCourses",coursesservice.getallCourses());
-        return "people";
+        Courses test = new Courses();
+        test.setId(1);
+        test.setLecturerId("1");
+        test.setPlace("just a test");
+        model.addAttribute("listCourses",test);
+        return "test";
     }
 }
