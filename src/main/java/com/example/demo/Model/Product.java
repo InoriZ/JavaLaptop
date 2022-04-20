@@ -17,11 +17,11 @@ public class Product {
 
     int price;
 
-    int stock;
+    Integer stock;
     @Column(name="imageurl")
     String imageUrl;
     @Column(name="isdelete")
-    boolean isDelete;
+    Boolean isDelete;
     String description;
 
     public int getIdProduct() {
