@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class CoursesController {
     @Autowired
     private CoursesService coursesservice;
-    @GetMapping
+    @GetMapping("/OhayouGozaimasu/test")
     public String viewHomePage(Model model){
         model.addAttribute("listCourses",coursesservice.getallCourses());
         return "people";
