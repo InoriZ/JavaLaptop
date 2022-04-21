@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="/layout/_layoutAdmin.html">
+      layout:decorate="/layout/_layout.html">
 <body>
     <div layout:fragment="content">
         <section class="my-5">
@@ -9,11 +9,17 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h1>Welcome to Our Site</h1>
-                        <p th:text = "${listCourses.idProduct}"></p>
-                        <p th:text = "${listCourses.idCategory}"></p>
-                        <p th:text = "${listCourses.name}"></p>
-                        <p th:text = "${listCourses.price}"></p>
+<!--                        <p th:text = "${listCourses.name}"></p>-->
+<!--                        <p th:text = "${listCourses.categoryName}"></p>-->
+<!--                        <p th:text = "${listCourses.name}"></p>-->
+<!--                        <p th:text = "${listCourses.price}"></p>-->
+                        <table class="table table-bordered">
+                            <tr th:each = "course: ${listCourses.productAttributes}">
+                                <td th:text = "${course.attribute.Name}"></td>
+                                <td th:utext = "${course.Value}"></td>
 
+                            </tr>
+                        </table>
 
                     </div>
                 </div>

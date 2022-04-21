@@ -1,19 +1,43 @@
 package com.example.demo.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table
-public class Product {
+@Table(name = "Product")
+public class Product implements Serializable {
     @Id
-    @GeneratedValue(strategy =GenerationType.IDENTITY)
-    @Column(name="idproduct")
+    @GeneratedValue(strategy =GenerationType.AUTO)
+    @Column(name="Idproduct")
     int idProduct;
-    @Column(name="idcategory")
-    int idCategory;
 
+    @ManyToOne
+    @JoinColumn(name = "idcategory")
+    Category category;
     String name;
+
+    @OneToMany(mappedBy = "product")
+    @JsonIgnore
+    List<ProductAttribute> productAttributes = new ArrayList<>();
+
+    public Product() {
+    }
+
+    public Product( Category category, String name, int price, Integer stock, String imageUrl, Boolean isDelete, String description) {
+
+        this.category = category;
+        this.name = name;
+        this.price = price;
+        this.stock = stock;
+        this.imageUrl = imageUrl;
+        this.isDelete = isDelete;
+        this.description = description;
+    }
 
     int price;
 
@@ -32,13 +56,9 @@ public class Product {
         this.idProduct = idProduct;
     }
 
-    public int getIdCategory() {
-        return idCategory;
-    }
 
-    public void setIdCategory(int idCategory) {
-        this.idCategory = idCategory;
-    }
+
+
 
     public String getName() {
         return name;
@@ -84,7 +104,36 @@ public class Product {
         return description;
     }
 
+
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public List<ProductAttribute> getProductAttributes() {
+        return productAttributes;
+    }
+
+    public Boolean getDelete() {
+        return isDelete;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public void setProductAttributes(List<ProductAttribute> productAttributes) {
+        this.productAttributes = productAttributes;
+    }
+
+    public void setDelete(Boolean delete) {
+        isDelete = delete;
     }
 }

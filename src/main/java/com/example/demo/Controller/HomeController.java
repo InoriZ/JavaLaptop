@@ -1,7 +1,8 @@
 package com.example.demo.Controller;
 
+import com.example.demo.Model.Attribute;
 import com.example.demo.Model.Product;
-import com.example.demo.Repository.ProductRepository;
+import com.example.demo.Model.ProductAttribute;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -11,8 +12,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController extends BaseController{
     @RequestMapping("/nothing")
     public String Test(Model model){
+//        System.out.println(Products.getProduct().getName());
+//
+//        model.addAttribute("listCourses", Products.getProduct());
+//        model.addAttribute("listCourses", Categories.getACategory(1));
+//        for (Product item:
+//                Products.getProductByCategory(2)) {
+//            for (ProductAttribute item2:
+//                 item.getProductAttributes()) {
+//                            System.out.println(item2.getValue());
+//
+//            }
 
-        model.addAttribute("listCourses", Product.getProduct());
+//        }
+        Product test = Products.getProduct();
+        System.out.println(test.getName());
+
+
+        model.addAttribute("listCourses", test);
+
         return "test";
     }
 }
