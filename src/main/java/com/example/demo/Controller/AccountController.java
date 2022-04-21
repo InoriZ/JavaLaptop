@@ -2,13 +2,14 @@ package com.example.demo.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 // import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 // import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 
-public class OhayouGozaimasu {
+public class AccountController {
 	@RequestMapping("/SignAndLog")
     String getPeople(Model model){
         model.addAttribute("something","some thing from controller");
@@ -31,13 +32,7 @@ public class OhayouGozaimasu {
        return "test";
    }
 
-   @RequestMapping("/ProductDetail")
-    String ProductDetail(Model model) {
-
-       model.addAttribute("message", "some thing from controller");
-
-       return "/Product/ProductDetail";
-   }
+   
 
    @RequestMapping("/ChangePassword")
     String ChangePassword(Model model) {

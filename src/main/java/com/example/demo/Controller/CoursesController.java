@@ -13,13 +13,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class CoursesController {
     @Autowired
     private CoursesService coursesservice;
-    @GetMapping("/OhayouGozaimasu/test")
-    public String viewHomePage(Model model){
-        Courses test = new Courses();
-        test.setId(1);
-        test.setLecturerId("1");
-        test.setPlace("just a test");
-        model.addAttribute("listCourses",test);
-        return "test";
-    }
+
+//    @GetMapping("/OhayouGozaimasu/test")
+//    public String viewHomePage(Model model){
+//        Courses test = new Courses();
+//        test.setId(1);
+//        test.setLecturerId("1");
+//        test.setPlace("just a test");
+//        model.addAttribute("listCourses",test);
+//        return "test";
+//    }
 }
