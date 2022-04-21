@@ -1,7 +1,7 @@
 package com.example.demo.Controller;
 
 import com.example.demo.Model.Product;
-import com.example.demo.Repository.ProductRepository;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -32,10 +32,11 @@ public class HomeController extends BaseController{
 
         return "test";
     }
-@RequestMapping("/ProductDetail")
-String Error404 (Model model) {
+    @RequestMapping("/ProductDetail")
+    String Error404 (Model model) {
 
-   model.addAttribute("listProduct", Product.getProduct());
+        model.addAttribute("listProduct", Products.getProduct());
 
-   return "/Product/ProductDetail";
+        return "/Product/ProductDetail";
+    }
 }

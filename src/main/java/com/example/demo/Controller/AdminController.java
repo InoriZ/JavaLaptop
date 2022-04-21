@@ -25,7 +25,7 @@ public class AdminController extends BaseController{
     private CategoryService categoryService;
     @RequestMapping("/Admin/Category")
     public String category(Model model){
-        model.addAttribute("listCategory", categoryService.getallCategories());
+        model.addAttribute("listCategory", Categories.GetAllCategory());
         return "/Admin/Category";
     }
     @RequestMapping("/Admin/InvoiceDetail")

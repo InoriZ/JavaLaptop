@@ -1,9 +1,7 @@
 package com.example.demo.Controller;
 
-import com.example.demo.Service.AttributeService;
-import com.example.demo.Service.CategoryService;
-import com.example.demo.Service.ProductAttributeService;
-import com.example.demo.Service.ProductService;
+import com.example.demo.Service.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class BaseController {
