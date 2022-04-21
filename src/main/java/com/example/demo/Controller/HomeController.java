@@ -15,7 +15,7 @@ public class HomeController extends BaseController{
         model.addAttribute("listProduct", Product.getProduct());
         return "test";
     }
-    @RequestMapping("/ProductDetail")
+@RequestMapping("/ProductDetail")
 String Error404 (Model model) {
 
    model.addAttribute("listProduct", Product.getProduct());

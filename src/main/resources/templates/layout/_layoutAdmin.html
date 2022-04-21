@@ -13,120 +13,7 @@
     <link href="/CSS/admincss.css" rel="stylesheet" />
     <link href="/CSS/layoutcss.css" rel="stylesheet" />
     <style>
-        .modal,
-        .modalver2 {
-            position: fixed;
-            top: 0;
-            right: 0;
-            left: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.3);
-            align-items: center;
-            justify-content: center;
-            display: none;
-        }
-
-        .modal-container {
-            background-color: white;
-            width: 60%;
-            max-width: calc(100%-32px);
-            min-height: 200px;
-            position: relative;
-            overflow-y: initial !important;
-        }
-
-        .modal-header {
-            background-color: rgb(229, 56, 56);
-            height: 130px;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            line-height: 65px;
-            color: white;
-        }
-
-        .ti-bag {
-            margin: 12px;
-        }
-
-        .close,
-        .closever2 {
-            position: absolute;
-            right: 0;
-            top: 0;
-            color: white;
-            padding: 15px;
-            cursor: pointer;
-        }
-
-        .close:hover {
-            color: black;
-            background-color: #ccc;
-        }
-
-        .modal-body {
-            padding: 15px;
-            height: 80vh;
-            overflow-y: auto;
-            max-height: 600px
-        }
-
-        .modal-label {
-            display: block;
-            margin-top: 15px;
-            margin-bottom: 5px;
-            font-size: 16px;
-        }
-
-        .modal-input {
-            padding: 8px;
-            width: 100%;
-            font-size: 15px;
-        }
-
-        .buy-tickets {
-            width: 100%;
-            padding: 16px;
-            background-color: rgb(229, 56, 56);
-            margin: 16px 0;
-            align-items: center;
-            justify-content: center;
-            border: none;
-            color: white;
-            cursor: pointer;
-        }
-
-        .buy-tickets:hover {
-            opacity: 0.8;
-        }
-
-        .modal-footer {
-            text-align: right;
-            padding: 16px;
-            border: none;
-        }
-
-        .modal-footer a {
-            color: #2196f3;
-        }
-
-        .modal.open {
-            display: flex;
-        }
-
-        .modal.close {
-            display: none;
-        }
-
-        .modalver2.open {
-            display: flex;
-        }
-
-        .modalver2.close {
-            display: none;
-        }
-
-        #footer {}
+        
     </style>
 </head>
 
@@ -178,46 +65,22 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                             Quản Lý Nhân Viên
                         </a>
-                        <a class="nav-link" href="/admin/product" style="font-size:18px">
+                        <a class="nav-link" href="/Admin/Product" style="font-size:18px">
                             <div class="sb-nav-link-icon"><i class="fas fa-archive"></i></div>
                             Sản Phẩm
                         </a>
-                        <a class="nav-link" href="/admin/attribute" style="font-size:18px">
+                        <a class="nav-link" href="/Admin/Attribute" style="font-size:18px">
                             <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
                             Thuộc Tính
                         </a>
-                        <a class="nav-link" href="/admin/category" style="font-size:18px">
+                        <a class="nav-link" href="/Admin/Category" style="font-size:18px">
                             <div class="sb-nav-link-icon"><i class="fas fa-certificate"></i></div>
                             Danh Mục
                         </a>
-                        <a class="nav-link" href="/admin/invoicedetail" style="font-size:18px">
+                        <a class="nav-link" href="/Admin/InvoiceDetail" style="font-size:18px">
                             <div class="sb-nav-link-icon"><i class="fas fa-receipt"></i></div>
                             Chi Tiết Đơn Hàng
-                        </a>
-                        <a class="nav-link" href="/admin/chart" style="font-size:18px">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-pie"></i></div>
-                            Bảng Thống Kê
-                        </a>
-                        <a class="nav-link" href="/admin/setting" style="font-size:18px">
-                            <div class="sb-nav-link-icon"><i class="fas fa-cog"></i></div>
-                            Thiết lập trang web
-                        </a>
-                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts"
-                            aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon"><i class="fas fa-trash-alt"></i></div>
-                            Thùng Rác
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
-                            data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="/admin/bannedstaff">-Nhân Viên</a>
-                                <a class="nav-link" href="/admin/DeletedAttribute">-Thuộc Tính</a>
-                                <a class="nav-link" href="/admin/DeletedCategory">-Danh Mục</a>
-                                <a class="nav-link" href="/admin/deletedproduct">-Sản Phẩm</a>
-                            </nav>
-                        </div>
+                        </a>                       
                         <a class="nav-link" href="/adminauth/LogOut" style="font-size:18px">
                             <div class="sb-nav-link-icon"><i class="fas fa-sign-out-alt"></i></div>
                             Đăng xuất
