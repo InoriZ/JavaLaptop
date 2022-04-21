@@ -9,23 +9,44 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 
-public class OhayouGozaimasu {
+public class AccountController {
 	@RequestMapping("/SignAndLog")
     String getPeople(Model model){
         model.addAttribute("something","some thing from controller");
-        return "/Auth/SignAndLog";
+        return "/Account/SignAndLog";
     }
 
     @RequestMapping("/ForgetPassword")
      String index(Model model) {
 
 		model.addAttribute("message", "some thing from controller");
-		return "/Auth/ForgetPassword";
-	}
-    @RequestMapping("/Admin")
-     String admin(Model model) {
 
-		model.addAttribute("message", "some thing from controller");
-		return "/layout/_layoutAdmin";
+		return "/Account/ForgetPassword";
 	}
+
+    @RequestMapping("/Layout")
+    String test(Model model) {
+
+       model.addAttribute("message", "some thing from controller");
+
+       return "test";
+   }
+
+   
+
+   @RequestMapping("/ChangePassword")
+    String ChangePassword(Model model) {
+
+       model.addAttribute("message", "some thing from controller");
+
+       return "/Account/ChangePassword";
+   }
+
+   @RequestMapping("/Notfound")
+   String Error404 (Model model) {
+
+      model.addAttribute("message", "some thing from controller");
+
+      return "/Account/ERROR404";
+  }
 }

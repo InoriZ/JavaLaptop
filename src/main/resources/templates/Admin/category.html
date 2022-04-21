@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="/layout/_layoutAdmin.html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="container-fluid">
+            <h1 class="mt-4">DANH MỤC</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item"><a href="/admin">Trang quản lí</a></li>
+
+                <li class="breadcrumb-item active">DANH MỤC</li>
+            </ol>
+    
+            <div class="card-body">
+                <table class="table table-bordered" style="vertical-align:baseline">
+                    <thead class="bg-dark" style="color:white">
+                        <tr>
+
+                            <td>Tên Danh Mục</td>
+                            <td>Sửa Danh Mục</td>
+                            <td>Xóa Danh Mục</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr style="text-align:center" th:each="category : ${listCategory}">   
+                                <td>
+                                    <p th:text="${category.CategoryName}"><h5 style="color:black;max-width:400px"></h5></p>
+                                </td>
+                                <td>
+                                    <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style="margin-top: 0px !important">
+                                        <button class="btn btn-primary btn-editcategory" ctgrName="@item.CategoryName" ctgrID="@item.IDCategory">
+                                            SỬA
+                                        </button>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style="margin-top:0px !important">
+                                        <button class="btn btn-primary" name="delete" ctgrID2="@item.IDCategory">XÓA</button>
+                                    </div>
+                                </td>                                
+                            </tr>  
+                            
+                    </tbody>
+                </table>
+                <div class="form-group">
+                    <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                        <button class="btn btn-primary btn-add" href="#">Thêm Sản Phẩm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
