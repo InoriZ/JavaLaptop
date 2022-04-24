@@ -13,4 +13,6 @@ public class BaseController {
     protected AttributeService Attributes;
     @Autowired
     protected ProductAttributeService ProductAttributes;
+    @Autowired
+    protected AccountService Accounts;
 }
