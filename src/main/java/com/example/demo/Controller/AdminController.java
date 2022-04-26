@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminController extends BaseController{
     @RequestMapping("/Admin/Product")
     String product(Model model){
-        model.addAttribute("something","some thing from controller");
+        model.addAttribute("listProduct",Products.getAllProduct());
         return "/Admin/Product";
     }
     @RequestMapping("/Admin/Attribute")

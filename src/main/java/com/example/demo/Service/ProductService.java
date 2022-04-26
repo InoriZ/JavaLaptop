@@ -21,6 +21,9 @@ public class ProductService extends BaseService{
 //        Product product = Products.getById(id);
 //        product.setProductattributes();
 //    }
+    public List<Product> getAllProduct(){
+        return Products.findAll();
+    }
 
 
 }
