@@ -31,25 +31,11 @@
                             <td>Xóa Thuộc Tính</td>
                         </tr>
                     </thead>
-                    <!-- <tbody>
-    
-                        @foreach (var item in Model)
-                        {
-                            <tr style="text-align:center">
-    
-                                <td>
-                                    <p><h5 style="color:black;max-width:400px">@Html.Raw(item.Name)</h5></p>
-                                </td>
-                                <td>
-                                    <p><h5 style="color:black">@String.Format("{0:0,0}", item.Price) VND</h5></p>
-                                </td>
-                                <td>
-                                    <p><h5 style="color:black">@item.Stock</h5></p>
-                                </td>
-                                <td>
-                                    <p><h5 style="color:black"> <img src="~/Content/Image/@item.ImageURL" width="150" height="150" alt="@Html.Raw(item.Name)" />  </h5></p>
-                                </td>
-    
+                    <tbody>
+                                <tr style="text-align:center" th:each="attribute : ${listAttribute}">   
+                                    <td>
+                                        <p th:text="${attribute.attributeName}"><h5 style="color:black;max-width:400px"></h5></p>
+                                    </td>
                                 <td>
                                     <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style="margin-top:0px !important">
                                         <button class="btn btn-primary btn-edit" type="button" pID="@item.IDProduct">SỬA</button>
@@ -62,14 +48,14 @@
                                     </div>
                                 </td>
                             </tr>
-                        }
+                        
     
     
-                    </tbody> -->
+                    </tbody>
                 </table>
                 <div class="form-group">
                     <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                        <button class="btn btn-primary btn-add" href="#">Thêm Sản Phẩm</button>
+                        <button class="btn btn-primary btn-add" href="#">Thêm Thuộc Tính</button>
                     </div>
                 </div>
             </div>

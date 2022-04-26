@@ -15,7 +15,7 @@ public class AdminController extends BaseController{
     }
     @RequestMapping("/Admin/Attribute")
     String attribute(Model model){
-        model.addAttribute("something","some thing from controller");
+        model.addAttribute("listAttribute", Attributes.getAllAttribute());
         return "/Admin/Attribute";
     }
 

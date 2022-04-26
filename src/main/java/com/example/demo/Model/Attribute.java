@@ -15,7 +15,9 @@ public class Attribute {
     @Column(name = "idattribute")
     int id;
     @Column(name = "attributename")
-    String Name;
+    String attributeName;
+   
+
     @Column(name = "isdelete")
     Boolean isDelete;
     @JsonIgnore
@@ -29,14 +31,15 @@ public class Attribute {
     public void setId(int id) {
         this.id = id;
     }
-
-    public String getName() {
-        return Name;
+    
+    public String getAttributeName() {
+        return attributeName;
     }
 
-    public void setName(String name) {
-        Name = name;
+    public void setAttributeName(String attributeName) {
+        this.attributeName = attributeName;
     }
+    
 
     public Boolean getDelete() {
         return isDelete;
