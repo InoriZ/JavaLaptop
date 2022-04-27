@@ -57,4 +57,14 @@ public class HomeController extends BaseController{
         model.addAttribute("listCategoryHome", Categories.GetAllCategory());
         return "/Home/Index";
     }
+
+    @RequestMapping("/ProductbyCate/{id}")
+    String ProductbyCate (@PathVariable Integer id, Model model) {
+
+        model.addAttribute("pdCate", Products.getProductByCategory(id));
+       
+        return "/Home/ProductbyCate";
+        
+       
+    }
 }
