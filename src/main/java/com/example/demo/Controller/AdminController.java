@@ -33,4 +33,40 @@ public class AdminController extends BaseController{
         model.addAttribute("listCategoryHome", Categories.GetAllCategory());
         return "/Admin/InvoiceDetail";
     }
+    @RequestMapping("/Admin/AddCategory")
+    String addCategory(Model model){
+        model.addAttribute("something","some thing from controller");
+        model.addAttribute("listCategoryHome", Categories.GetAllCategory());
+        return "/Admin/addCategory";
+    }
+    @RequestMapping("/Admin/EditCategory")
+    String editCategory(Model model){
+        model.addAttribute("something","some thing from controller");
+        model.addAttribute("listCategoryHome", Categories.GetAllCategory());
+        return "/Admin/editCategory";
+    }
+    @RequestMapping("/Admin/AddAttribute")
+    String addAttribute(Model model){
+        model.addAttribute("something","some thing from controller");
+        model.addAttribute("listCategoryHome", Categories.GetAllCategory());
+        return "/Admin/addAttribute";
+    }
+    @RequestMapping("/Admin/EditAttribute")
+    String editAttribute(Model model){
+        model.addAttribute("something","some thing from controller");
+        model.addAttribute("listCategoryHome", Categories.GetAllCategory());
+        return "/Admin/EditAttribute";
+    }
+    @RequestMapping("/Admin/AddProduct")
+    String addProduct(Model model){
+        model.addAttribute("something","some thing from controller");
+        model.addAttribute("listCategoryHome", Categories.GetAllCategory());
+        return "/Admin/AddProduct";
+    }
+    @RequestMapping("/Admin/EditProduct")
+    String editProduct(Model model){
+        model.addAttribute("something","some thing from controller");
+        model.addAttribute("listCategoryHome", Categories.GetAllCategory());
+        return "/Admin/EditProduct";
+    }
 }
