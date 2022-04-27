@@ -24,16 +24,24 @@
                     <div class="col-md-12">
                         <div style="border: 5px solid blue; border-radius:20px; padding:5px;margin:10px 0">
                             <h3 class="text-center">Nhãn hiệu Alienware</h3>
-                            <div class="row" >
+                            <div class="row">
                                 <div class="col-3" th:each="pd1 : ${listProduct1}">
                                     <div class="card border-0 menu-item" style="min-height:450px;max-height:450px;">
-                                        <img width="120" th:src="@{'/Image/ImageProduct/'+${pd1.imageUrl}}"
-                                            class="card-img-top" alt="@{$(pd1.imageUrl)}" />
-                                        <div class="card-body" >
-                                            <h5 class="card-title" style="min-height:100px;" th:text="${pd1.name}"></h5>
-                                            <a href="#" class="btn btn-primary"><i
-                                                    class="fa-solid fa-circle-info"></i></a>
-                                            <button name="add" class="btn btn-outline-danger" th:value="${pd1.idProduct}"><i
+                                        <a th:href="@{'/ProductDetail/' + ${pd1.idProduct}}">
+                                            <img width="120" th:src="@{'/Image/ImageProduct/'+${pd1.imageUrl}}"
+                                                class="card-img-top" alt="@{$(pd1.imageUrl)}" />
+                                        </a>
+
+                                        <div class="card-body">
+                                            <a th:href="@{'/ProductDetail/' + ${pd1.idProduct}}">
+                                                <h5 class="card-title" style="min-height:70px;" th:text="${pd1.name}">
+                                                </h5>
+                                            </a>
+                                            <h5 class="card-price" style="min-height:20px;"
+                                                th:text="${pd1.price} + '  VND'"></h5>
+                                            <a th:href="@{'/ProductDetail/' + ${pd1.idProduct}}"
+                                                class="btn btn-primary"><i class="fa-solid fa-circle-info"></i></a>
+                                            <button name="add" class="btn btn-outline-danger" pid="@item.IDProduct"><i
                                                     class="fa-solid fa-cart-shopping"></i></button>
                                         </div>
                                     </div>
@@ -42,15 +50,24 @@
                         </div>
                         <div style="border: 5px solid red; border-radius:20px; padding:5px; margin:10px 0">
                             <h3 class="text-center">Nhãn hiệu HP</h3>
-                            <div class="row" >
+                            <div class="row">
                                 <div class="col-3" th:each="pd2 : ${listProduct2}">
                                     <div class="card border-0 menu-item" style="min-height:450px;max-height:450px;">
-                                        <img width="120" th:src="@{'/Image/ImageProduct/'+${pd2.imageUrl}}"
-                                            class="card-img-top" alt="@{$(pd2.imageUrl)}" />
-                                        <div class="card-body" >
-                                            <h5 class="card-title" style="min-height:100px;" th:text="${pd2.name}"></h5>
-                                            <a href="#" class="btn btn-primary"><i
-                                                    class="fa-solid fa-circle-info"></i></a>
+                                        <a th:href="@{'/ProductDetail/' + ${pd2.idProduct}}">
+                                            <img width="120" th:src="@{'/Image/ImageProduct/'+${pd2.imageUrl}}"
+                                                class="card-img-top" alt="@{$(pd2.imageUrl)}" />
+                                        </a>
+
+                                        <div class="card-body">
+                                            <a th:href="@{'/ProductDetail/' + ${pd2.idProduct}}">
+                                                <h5 class="card-title" style="min-height:70px;" th:text="${pd2.name}">
+                                                </h5>
+                                            </a>
+
+                                            <h5 class="card-price" style="min-height:20px;"
+                                                th:text="${pd2.price} + '  VND'"></h5>
+                                            <a th:href="@{'/ProductDetail/' + ${pd2.idProduct}}"
+                                                class="btn btn-primary"><i class="fa-solid fa-circle-info"></i></a>
                                             <button name="add" class="btn btn-outline-danger" pid="@item.IDProduct"><i
                                                     class="fa-solid fa-cart-shopping"></i></button>
                                         </div>
@@ -61,15 +78,23 @@
 
                         <div style="border: 5px solid yellow; border-radius:20px; padding:5px;margin:10px 0">
                             <h3 class="text-center">Nhãn hiệu Asus</h3>
-                            <div class="row" >
+                            <div class="row">
                                 <div class="col-3" th:each="pd3 : ${listProduct3}">
                                     <div class="card border-0 menu-item" style="min-height:450px;max-height:450px;">
-                                        <img width="120" th:src="@{'/Image/ImageProduct/'+${pd3.imageUrl}}"
-                                            class="card-img-top" alt="@{$(pd3.imageUrl)}" />
-                                        <div class="card-body" >
-                                            <h5 class="card-title" style="min-height:100px;" th:text="${pd3.name}"></h5>
-                                            <a href="#" class="btn btn-primary"><i
-                                                    class="fa-solid fa-circle-info"></i></a>
+                                        <a th:href="@{'/ProductDetail/' + ${pd3.idProduct}}">
+                                            <img width="120" th:src="@{'/Image/ImageProduct/'+${pd3.imageUrl}}"
+                                                class="card-img-top" alt="@{$(pd3.imageUrl)}" />
+                                        </a>
+                                        <div class="card-body">
+                                            <a th:href="@{'/ProductDetail/' + ${pd3.idProduct}}">
+                                                <h5 class="card-title" style="min-height:70px;" th:text="${pd3.name}">
+                                                </h5>
+                                            </a>
+                                            <h5 class="card-price" style="min-height:20px;"
+                                                th:text="${pd3.price} + '  VND'"></h5>
+                                            <a th:href="@{'/ProductDetail/' + ${pd3.idProduct}}"
+                                                class="btn btn-primary">
+                                                <i class="fa-solid fa-circle-info"></i></a>
                                             <button name="add" class="btn btn-outline-danger" pid="@item.IDProduct"><i
                                                     class="fa-solid fa-cart-shopping"></i></button>
                                         </div>
