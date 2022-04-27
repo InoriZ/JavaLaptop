@@ -67,5 +67,12 @@ public class AccountController extends BaseController{
       model.addAttribute("message", "some thing from controller");
 
       return "/Account/ERROR404";
-  }
+    }
+    @RequestMapping("/Cart")
+   String Cart (Model model) {
+
+      model.addAttribute("message", "some thing from controller");
+
+      return "/Account/Cart";
+    }
 }

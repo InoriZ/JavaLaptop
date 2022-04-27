@@ -23,7 +23,6 @@ textarea {
 }
 
 #navbar {
-    overflow: hidden;
     background-image: linear-gradient(to right, #ff8b26, #ffaf26);
     z-index: 2;
 }
@@ -175,4 +174,108 @@ textarea {
 .nav-header:hover {
     opacity: 1 !important;
     color: #337ab7 !important;
+}
+
+ul {
+    list-style-type: none;
+}
+
+#nav .ti-angle-down {
+    font-size: 12px;
+}
+
+#nav > li {
+    display: inline-block;
+}
+
+.navitem:hover {
+    color: red;
+}
+
+.navitem {
+    color: darkgray;
+}
+
+.nav-header {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#nav li {
+    position: relative;
+}
+
+    #nav li:hover .subnav {
+        display: block;
+    }
+
+.nav-column {
+    display: table-cell;
+}
+
+    .nav-column .navitem {
+        color: gray !important;
+    }
+
+    .nav-column .border-nav {
+        border-bottom: solid;
+        border-color: darkgrey;
+        width: 50%;
+        margin-left: 16px;
+    }
+
+#nav .subnav {
+    display: none;
+    position: absolute;
+    background-color: white;
+    color: black;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    min-width: 150px;
+    top: 110%;
+    z-index: 1;
+    left: 0%;
+}
+
+    #nav .subnav a {
+        color: black !important;
+        display: block;
+        line-height: 20px;
+        border-top: 1px solid #ddd;
+        border-width:1px ;
+        padding-left: 0 !important;
+        padding-left: 0 !important ;
+        width: 100px;
+        text-align: left !important;
+    }
+
+    #nav .subnav .navitem:hover {
+        /*background-color:darkgrey;*/
+        /*            opacity:0.9;*/
+        color: black !important;
+        font-weight: bold;
+    }
+
+    #nav .subnav .nav-header:hover {
+        opacity: 0.8 !important;
+    }
+
+
+
+#nav li a {
+    color: black;
+    text-decoration: none;
+}
+
+#nav li:hover {
+    color: #fff !important;
+}
+
+#nav li a {
+    display: block;
+}
+#nav li a:hover {
+        color: #fff !important;
+}
+ul{
+    margin: 0 !important;
 }

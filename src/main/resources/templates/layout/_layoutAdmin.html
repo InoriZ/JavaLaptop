@@ -33,18 +33,32 @@
 
         </div>
     </div>
-    <div id="navbar">
-        <div class="container">          
-            <a href="#">Home</a>
-            <a href="#">News</a>
-            <a href="#">Contact</a>
-            <div class="login-section">
-                <a href="#">Đăng nhập</a>
-                <a href="#">Đăng Kí</a>
-            </div>
+    <div id="navbar" class="">
+        <div class="container">
+            <ul id="nav">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">News</a></li>
+                <li><a href="#">News</a></li>
+                <li>
+                    <a href="#">Contact</a>
+                    <div class="subnav">
+                        <div class="nav-column">
+                            <ul th:each="category : ${listCategory}">
+                                <li><a href="#" th:text="${category.CategoryName}" class="navitem" ></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+
+                <div class="login-section">
+                    <a href="#">Đăng nhập</a>
+                    <a href="#">Đăng Kí</a>
+                </div>
+            </ul>
         </div>
+        
     </div>
-    <div class="row" style="min-height:100vh">
+    <div class="row container-fluid" style="min-height:100vh">
         <div class="col-2">
             <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">

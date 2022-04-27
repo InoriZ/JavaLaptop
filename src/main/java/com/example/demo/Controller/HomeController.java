@@ -36,7 +36,7 @@ public class HomeController extends BaseController{
     String Error404 (Model model) {
 
         model.addAttribute("listProduct", Products.getProduct());
-
+        model.addAttribute("listCategoryHome", Categories.GetAllCategory());
         return "/Product/ProductDetail";
     }
 
@@ -48,7 +48,7 @@ public class HomeController extends BaseController{
         model.addAttribute("listProduct2", Products.getProductByCategory(5).subList(0, 4));
         model.addAttribute("listProduct3", Products.getProductByCategory(3).subList(0, 4));
 
-
+        model.addAttribute("listCategoryHome", Categories.GetAllCategory());
         return "/Home/Index";
     }
 }
