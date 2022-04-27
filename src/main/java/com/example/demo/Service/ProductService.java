@@ -25,5 +25,10 @@ public class ProductService extends BaseService{
         return Products.findAll();
     }
 
+    public Product getProductDetail(Integer id){
+        return Products.getById(id);
+        
 
+   
+    }
 }
