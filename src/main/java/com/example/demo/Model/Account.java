@@ -1,18 +1,22 @@
 package com.example.demo.Model;
 
-import java.sql.Date;
+
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@Table
 public class Account {
     
     @Column(name = "Idaccount")
     @Id
+    
     String IDAccount;
     @Column(name = "Username")
     String UserName;
@@ -23,8 +27,8 @@ public class Account {
     String Email;
 
     String Token;
-    @Column(name = "Expriredtokentime")
-    Date ExpTokenTIme;
+    @Column(name = "Expiredtokentime")
+    Timestamp ExpTokenTime;
     @Column(name = "Isdelete")
     Boolean IsDelete;
     @Column (name = "Fullname")
@@ -43,14 +47,14 @@ public class Account {
     }
 
 
-    public Account(String iDAccount, String userName, byte[] password, String email, String token, Date expTokenTIme,
+    public Account(String iDAccount, String userName, byte[] password, String email, String token, Timestamp expTokenTIme,
             Boolean isDelete, String fullName, Boolean gender) {
         IDAccount = iDAccount;
         UserName = userName;
         Password = password;
         Email = email;
         Token = token;
-        ExpTokenTIme = expTokenTIme;
+        ExpTokenTime = expTokenTIme;
         IsDelete = isDelete;
         FullName = fullName;
         Gender = gender;
@@ -96,12 +100,12 @@ public class Account {
         Token = token;
     }
 
-    public Date getExpTokenTIme() {
-        return ExpTokenTIme;
+    public Timestamp getExpTokenTIme() {
+        return ExpTokenTime;
     }
 
-    public void setExpTokenTIme(Date expTokenTIme) {
-        ExpTokenTIme = expTokenTIme;
+    public void setExpTokenTIme(Timestamp expTokenTIme) {
+        ExpTokenTime = expTokenTIme;
     }
 
     public Boolean getIsDelete() {
