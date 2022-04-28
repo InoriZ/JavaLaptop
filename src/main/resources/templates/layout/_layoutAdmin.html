@@ -46,11 +46,16 @@
                 <li><a href="#">News</a></li>
                 <li><a href="#">News</a></li>
                 <li>
-                    <a href="#">Contact</a>
+                    <a href="#">Sản Phẩm</a>
+
                     <div class="subnav">
-                        <div class="nav-column">
-                            <ul th:each="category : ${listCategory}">
-                                <li><a href="#" th:text="${category.CategoryName}" class="navitem" ></a></li>
+                        <div class="nav-column" >
+                            <ul >
+                                <li th:each="category : ${listCategoryHome}"><a th:href="@{'/ProductbyCate/' + ${category.idCategory}}"  class="navitem" >
+                                <p th:text="${category.CategoryName}">
+                                    
+                                </p>
+                                </a></li>
                             </ul>
                         </div>
                     </div>
