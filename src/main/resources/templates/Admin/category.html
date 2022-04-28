@@ -38,7 +38,7 @@
                                 </td>
                                 <td>
                                     <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style="margin-top: 0px !important">
-                                        <button class="btn btn-primary btn-editcategory" ctgrName="@item.CategoryName" ctgrID="@item.IDCategory">
+                                        <button class="btn btn-primary btn-editcategory"  ctgrName="@item.CategoryName" ctgrID="@item.IDCategory">
                                             SỬA
                                         </button>
                                     </div>
@@ -54,7 +54,7 @@
                 </table>
                 <div class="form-group">
                     <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                        <button class="btn btn-primary btn-add" href="#">Thêm Sản Phẩm</button>
+                        <a class="btn btn-primary btn-add" th:href="@{/Admin/AddCategory}">Thêm Danh Mục</a>
                     </div>
                 </div>
             </div>

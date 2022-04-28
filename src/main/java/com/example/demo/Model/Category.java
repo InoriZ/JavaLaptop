@@ -3,6 +3,8 @@ package com.example.demo.Model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +16,8 @@ public class Category implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idcategory")
     int idCategory;
+
+    @NotEmpty(message = "Thiếu Tên Danh Mục")
     @Column(name = "categoryname")
     String categoryName;
     @JsonIgnore
