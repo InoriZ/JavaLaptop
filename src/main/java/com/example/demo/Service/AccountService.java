@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class AccountService extends BaseService{
     public void AddAccount(Account model){
+        
         Accounts.saveAndFlush(model);
         
     }
