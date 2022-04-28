@@ -47,6 +47,7 @@ public class Product implements Serializable {
     @Column(name="isdelete")
     Boolean isDelete;
     String description;
+    
 
     public int getIdProduct() {
         return idProduct;

@@ -1,11 +1,15 @@
 package com.example.demo.Controller;
 
+
+
 import com.example.demo.Model.Product;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+// import groovyjarjarantlr4.v4.parse.ANTLRParser.id_return;
 
 @Controller
 public class HomeController extends BaseController{
@@ -32,11 +36,35 @@ public class HomeController extends BaseController{
 
         return "test";
     }
-    @RequestMapping("/ProductDetail")
-    String Error404 (Model model) {
+    @RequestMapping("/ProductDetail/{id}")
+    String ProductDetail (@PathVariable Integer id, Model model) {
 
-        model.addAttribute("listProduct", Products.getProduct());
-
+        model.addAttribute("listProduct", Products.getProductDetail(id));
+       
         return "/Product/ProductDetail";
+        
+       
+    }
+
+    @RequestMapping("/")
+    String Index (Model model) {
+
+        model.addAttribute("listProduct1", Products.getProductByCategory(1).subList(0, 4));
+       
+        model.addAttribute("listProduct2", Products.getProductByCategory(5).subList(0, 4));
+        model.addAttribute("listProduct3", Products.getProductByCategory(3).subList(0, 4));
+
+        model.addAttribute("listCategoryHome", Categories.GetAllCategory());
+        return "/Home/Index";
+    }
+
+    @RequestMapping("/ProductbyCate/{id}")
+    String ProductbyCate (@PathVariable Integer id, Model model) {
+
+        model.addAttribute("pdCate", Products.getProductByCategory(id));
+       
+        return "/Home/ProductbyCate";
+        
+       
     }
 }

@@ -34,28 +34,24 @@
                             <td>Xóa Thông Tin Sản Phẩm</td>
                         </tr>
                     </thead>
-                    <!-- <tbody>
-    
-                        @foreach (var item in Model)
-                        {
-                            <tr style="text-align:center">
-    
+                    <tbody>
+                            <tr style="text-align:center" th:each="product : ${listProduct}">
                                 <td>
-                                    <p><h5 style="color:black;max-width:400px">@Html.Raw(item.Name)</h5></p>
+                                    <p th:text="${product.name}"><h5 style="color:black;max-width:400px"></h5></p>
                                 </td>
                                 <td>
-                                    <p><h5 style="color:black">@String.Format("{0:0,0}", item.Price) VND</h5></p>
+                                    <p  th:text="${product.price}"><h5 style="color:black"></h5></p>
                                 </td>
                                 <td>
-                                    <p><h5 style="color:black">@item.Stock</h5></p>
+                                    <p  th:text="${product.stock}"><h5 style="color:black"></h5></p>
                                 </td>
                                 <td>
-                                    <p><h5 style="color:black"> <img src="~/Content/Image/@item.ImageURL" width="150" height="150" alt="@Html.Raw(item.Name)" />  </h5></p>
-                                </td>
-    
+                                    <!-- <p><h5 style="color:black"> <img src="~/Content/Image/@item.ImageURL" width="150" height="150" alt="@Html.Raw(item.Name)" />  </h5></p> -->
+                                    <img width="120" th:src="@{'/Image/ImageProduct/'+${product.imageUrl}}"/>
+                                </td>   
                                 <td>
                                     <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style="margin-top:0px !important">
-                                        <button class="btn btn-primary btn-edit" type="button" pID="@item.IDProduct">SỬA</button>
+                                        <button class="btn btn-primary btn-edit" type="button" pID="@item.IDProduct" >SỬA</button>
                                     </div>
                                 </td>
     
@@ -65,10 +61,9 @@
                                     </div>
                                 </td>
                             </tr>
-                        }
     
     
-                    </tbody> -->
+                    </tbody>
                 </table>
                 <div class="form-group">
                     <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">

@@ -13,6 +13,6 @@ public class AttributeService {
     @Autowired
     AttributeRepository Attributes;
     public Attribute getAAttribute(int id){return Attributes.getById(id);}
-    public List<Attribute> getAllAttribute(int id){return Attributes.findAll();}
+    public List<Attribute> getAllAttribute(){return Attributes.findAll();}
 
 }
