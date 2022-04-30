@@ -18,6 +18,11 @@
     <style>
 
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+            crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -47,11 +52,16 @@
                 <li><a href="#">News</a></li>
                 <li><a href="#">News</a></li>
                 <li>
-                    <a href="#">Contact</a>
+                    <a href="#">Sản Phẩm</a>
+
                     <div class="subnav">
-                        <div class="nav-column">
-                            <ul th:each="category : ${listCategory}">
-                                <li><a href="#" th:text="${category.CategoryName}" class="navitem" ></a></li>
+                        <div class="nav-column" >
+                            <ul >
+                                <li th:each="category : ${listCategoryHome}"><a th:href="@{'/ProductbyCate/' + ${category.idCategory}}"  class="navitem" >
+                                <p th:text="${category.CategoryName}">
+                                    
+                                </p>
+                                </a></li>
                             </ul>
                         </div>
                     </div>
@@ -188,11 +198,7 @@
             }
         }
     </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
-        crossorigin="anonymous"></script>
+
 </body>
 
 </html>

@@ -1,10 +1,15 @@
 package com.example.demo.Controller;
 
 
+import com.example.demo.Model.Category;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
 
 @Controller
 public class AdminController extends BaseController{
@@ -37,7 +42,15 @@ public class AdminController extends BaseController{
     String addCategory(Model model){
         model.addAttribute("something","some thing from controller");
         model.addAttribute("listCategoryHome", Categories.GetAllCategory());
+        Category category=new Category();
+        model.addAttribute("category", category);
         return "/Admin/addCategory";
+    }
+    @PostMapping(value="/SaveCategory")
+    public String SaveCategory(@ModelAttribute("category")  Category category) {
+        //TODO: process POST request
+        Categories.SaveCategory(category);
+        return "redirect:/Admin/Category";
     }
     @RequestMapping("/Admin/EditCategory")
     String editCategory(Model model){

@@ -13,5 +13,9 @@ public class CategoryService extends BaseService{
     public List<Category> GetAllCategory(){
         return Categories.findAll();
     }
+    public void SaveCategory(Category category)
+    {
+        this.Categories.save(category);
+    }
 
 }

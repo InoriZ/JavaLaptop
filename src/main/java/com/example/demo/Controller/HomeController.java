@@ -67,6 +67,7 @@ public class HomeController extends BaseController{
 
         model.addAttribute("pdCate", Products.getProductByCategory(id));
        
+        model.addAttribute("listCategoryHome", Categories.GetAllCategory());
         return "/Home/ProductbyCate";
         
        
