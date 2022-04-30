@@ -1,11 +1,13 @@
 package com.example.demo.Model;
 
 
-import java.sql.Timestamp;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -19,16 +21,12 @@ public class Account {
     
     String IDAccount;
     @Column(name = "Username")
-    String UserName;
+    String user;
     
     @JsonIgnore
-    byte[] Password;
+    byte[] password;
     
-    String Email;
-
-    String Token;
-    @Column(name = "Expiredtokentime")
-    Timestamp ExpTokenTime;
+    String email;
     @Column(name = "Isdelete")
     Boolean IsDelete;
     @Column (name = "Fullname")
@@ -36,29 +34,44 @@ public class Account {
     
     Boolean Gender;
 
+    @ManyToOne
+    @JoinColumn(name = "idrole")
+    Role AccountRole;
+
     public Account(){}
     
 
     public Account(String iDAccount, String userName, byte[] password, String email) {
         IDAccount = iDAccount;
-        UserName = userName;
-        Password = password;
-        Email = email;
+        user = userName;
+        this.password = password;
+        this.email = email;
     }
 
 
-    public Account(String iDAccount, String userName, byte[] password, String email, String token, Timestamp expTokenTIme,
-            Boolean isDelete, String fullName, Boolean gender) {
+   
+
+    public Account(String iDAccount, String user, byte[] password, String email, Role accountRole) {
         IDAccount = iDAccount;
-        UserName = userName;
-        Password = password;
-        Email = email;
-        Token = token;
-        ExpTokenTime = expTokenTIme;
+        this.user = user;
+        this.password = password;
+        this.email = email;
+        AccountRole = accountRole;
+    }
+
+
+    public Account(String iDAccount, String user, byte[] password, String email, Boolean isDelete, String fullName,
+            Boolean gender, Role accountRole) {
+        IDAccount = iDAccount;
+        this.user = user;
+        this.password = password;
+        this.email = email;
         IsDelete = isDelete;
         FullName = fullName;
         Gender = gender;
+        AccountRole = accountRole;
     }
+
 
     public String getIDAccount() {
         return IDAccount;
@@ -69,43 +82,27 @@ public class Account {
     }
 
     public String getUserName() {
-        return UserName;
+        return user;
     }
 
     public void setUserName(String userName) {
-        UserName = userName;
+        user = userName;
     }
 
     public byte[] getPassword() {
-        return Password;
+        return password;
     }
 
     public void setPassword(byte[] password) {
-        Password = password;
+        this.password = password;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
-    }
-
-    public String getToken() {
-        return Token;
-    }
-
-    public void setToken(String token) {
-        Token = token;
-    }
-
-    public Timestamp getExpTokenTIme() {
-        return ExpTokenTime;
-    }
-
-    public void setExpTokenTIme(Timestamp expTokenTIme) {
-        ExpTokenTime = expTokenTIme;
+        this.email = email;
     }
 
     public Boolean getIsDelete() {
@@ -130,6 +127,11 @@ public class Account {
 
     public void setGender(Boolean gender) {
         Gender = gender;
+    }
+
+
+    public Role getRole() {
+        return this.AccountRole;
     }
 
     

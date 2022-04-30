@@ -15,7 +15,7 @@
 <!--                        <p th:text = "${listCourses.price}"></p>-->
                         <table class="table table-bordered">
                             <tr th:each = "course: ${listCourses.productAttributes}">
-                                <td th:text = "${course.attribute.Name}"></td>
+                                <td th:text = "${course.attribute.attributeName}"></td>
                                 <td th:utext = "${course.Value}"></td>
 
                             </tr>

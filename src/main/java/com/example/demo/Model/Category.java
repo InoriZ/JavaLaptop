@@ -9,6 +9,7 @@ import java.util.List;
 
 
 @Entity
+@Table
 public class Category implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

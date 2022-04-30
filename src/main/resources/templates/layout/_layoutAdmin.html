@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+                xmlns:sec="www.thymeleaf.org/extras/spring-security">
+                
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -57,8 +58,9 @@
                 </li>
 
                 <div class="login-section">
-                    <a href="#">Đăng nhập</a>
-                    <a href="#">Đăng Kí</a>
+                    <a sec:authorize="isAuthenticated()" href="/Logout">Đăng xuất</a>
+                    <a sec:authorize="isAnonymous()" href="/SignAndLog">Đăng nhập / Đăng Kí</a>
+                    
                 </div>
             </ul>
         </div>

@@ -2,11 +2,12 @@ package com.example.demo.Controller;
 
 import com.example.demo.Helper.Helper;
 import com.example.demo.Model.Account;
-
 import com.example.demo.SideModel.ReturnJsonObject;
 import com.example.demo.SideModel.SignUpModel;
 
-
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -21,18 +22,34 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class AccountController extends BaseController{
 	@RequestMapping("/SignAndLog")
     String getPeople(Model model){
-        model.addAttribute("something","some thing from controller");
-        return "/Account/SignAndLog";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+            return "/Account/SignAndLog";
+        }
+ 
+        return "redirect:/";
+    
+        
     }
 
     @PostMapping("/Register")
     @ResponseBody
     public Object SignUp(SignUpModel model){
-        var Idaccount =  Helper.RandomString(64);
-        Account rs = new Account(Idaccount, model.getUser(), Helper.Hash(Idaccount+model.getPass()), model.getEmail());
-        Accounts.AddAccount(rs);
-        return new ReturnJsonObject(true, rs);
+        
+        var obj = Accounts.AddAccount(model);
 
+        return obj;
+    }
+    @ResponseBody
+    @RequestMapping("/LogSuccess")
+    public Object LogSuccess(){
+        return new ReturnJsonObject(true, "Đăng nhập thành công, bạn sẽ quay về trang chủ", "/");
+    }
+    @ResponseBody
+    @RequestMapping("/FailureLog")
+    public Object FailureLog(){
+        
+        return new ReturnJsonObject(false, "Đăng nhập thất bại, sai tài khoản hoặc mật khẩu", null);
     }
 
     @RequestMapping("/ForgetPassword")
@@ -68,7 +85,7 @@ public class AccountController extends BaseController{
 
       return "/Account/ERROR404";
     }
-    @RequestMapping("/Cart")
+    @RequestMapping("/Account/Cart")
    String Cart (Model model) {
 
       model.addAttribute("message", "some thing from controller");
