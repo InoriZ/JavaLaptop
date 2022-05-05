@@ -28,6 +28,10 @@ public class HomeController extends BaseController{
 //            }
 
 //        }
+
+        // var test2 = Accounts.findAccount("rio123");
+        // System.out.println("test 1 chutsssssssss:" +test2.getRole().getRoleName());
+
         Product test = Products.getProduct();
         System.out.println(test.getName());
 

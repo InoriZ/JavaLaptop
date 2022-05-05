@@ -14,4 +14,6 @@ public class BaseService {
     protected ProductRepository Products;
     @Autowired
     protected AccountRepository Accounts;
+    @Autowired
+    protected RoleRepository Roles;
 }

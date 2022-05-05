@@ -24,19 +24,19 @@
             <input id="tab-2" type="radio" name="tab" class="sign-up">
             <label for="tab-2" class="tab">Đăng kí</label>
             <div class="login-space">
-                <form id="log">
+                <form id="log" >
                   
                     <div class="login">
                         <div class="group">
                             <label for="user" class="label">Tên tài khoản</label>
-                            <input id="user" style="min-width:100%" type="text" class="input" placeholder="Nhập tên tài khoản của bạn" name="User">
+                            <input id="user" style="min-width:100%" type="text" class="input" placeholder="Nhập tên tài khoản của bạn" name="username">
                         </div>
                         <div class="group">
                             <label for="pass" class="label">Password</label>
-                            <input id="pass" style="min-width:100%" type="password" class="input" placeholder="Nhập mật khẩu" name="Pass">
+                            <input id="pass" style="min-width:100%" type="password" class="input" placeholder="Nhập mật khẩu" name="password">
                         </div>
                         <div class="group">
-                            <input id="check" type="checkbox" class="check" name="rem" value="true">
+                            <input id="check" type="checkbox" class="check" name="remember-me" >
                             <label for="check">
                                 <span class="icon"></span> Keep me Signed in
                             </label>
@@ -105,7 +105,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js" integrity="sha512-37T7leoNS06R80c8Ulq7cdCDU5MNQBwlYoy1TX/WUsLFC2eYNqtKlV0QjH7r8JpG/S0GUMZwebnVFLPd6SU5yg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
-            var Url = "http://localhost:8080"
+            // var Url = "http://localhost:8080"
             jQuery.validator.addMethod("userRegEx", function (value, element) {
                 var regex = /^[a-zA-Z0-9]{1,}$/g.test(value);
                 return this.optional(element) || regex
@@ -113,7 +113,7 @@
 
             $().ready(function () {
                 $("form").each(function () {
-
+                    
                     var id = $(this).attr('id');
                     console.log(id);
                     $(this).validate({
@@ -123,6 +123,17 @@
                                 userRegEx: true,
                                 maxlength: 32,
                                 minlength: 6,
+                            },
+                            username:{
+                                required: true,
+                                userRegEx: true,
+                                maxlength: 32,
+                                minlength: 6,
+                            },
+                            password:{
+                                required: true,
+                                minlength: 6,
+                                maxlength: 24, 
                             },
                             Pass: {
                                 required: true,
@@ -167,13 +178,37 @@
                                 email: "Hãy nhập đúng định dạng email",
                                 maxlength: "Hãy nhập tối đa 64 ký tự",
                                 minlength: "Hãy nhập tối thiểu 10 ký tự"
-                            }
+                            },
+                            username:{
+                                required: "Bắt buộc nhập username",
+                                userRegEx: "Bắt đầu bằng chữ hoặc số và không có kí tự đặc biệt",
+                                maxlength: "Hãy nhập tối đa 32 ký tự",
+                                minlength: "Hãy nhập tối thiểu 6 ký tự"
+                            },
+                            password:{
+                                required: "Bắt buộc nhập password",
+                                minlength: "Hãy nhập ít nhất 6 ký tự",
+                                maxlength: "Hãy nhập ít nhất 24 ký tự",
+                            },
                         },
                         submitHandler: function (form) {
                             //console.log('/Account/' + id);
-                            $.post(Url + '/' + id, $(form).serialize(), (r) => {
-                                console.log(r);
+                            
+                            $.post(
+                                '/' + id, $(form).serialize(), (r) => {
+                                if(r.Status == true){
+                                    alert(r.Result);
+                                    window.location.href = r.url;
+                                }
+                                else{
+                                    alert(r.Result)
+                                    $('input[name = "Pass"]').val("");
+                                    $('input[name = "RePass"]').val("");
+                                    $('input[name = "password"]').val("");
 
+
+                                }
+                                // console.log(r);
 
 
 
