@@ -1,6 +1,7 @@
 package com.example.demo.Controller;
 
 
+import com.example.demo.Model.Attribute;
 import com.example.demo.Model.Category;
 
 import org.springframework.stereotype.Controller;
@@ -48,7 +49,6 @@ public class AdminController extends BaseController{
     }
     @PostMapping(value="/SaveCategory")
     public String SaveCategory(@ModelAttribute("category")  Category category) {
-        //TODO: process POST request
         Categories.SaveCategory(category);
         return "redirect:/Admin/Category";
     }
@@ -62,7 +62,15 @@ public class AdminController extends BaseController{
     String addAttribute(Model model){
         model.addAttribute("something","some thing from controller");
         model.addAttribute("listCategoryHome", Categories.GetAllCategory());
+        Attribute attribute=new Attribute();
+        model.addAttribute("attribute",attribute);
         return "/Admin/addAttribute";
+    }
+    @PostMapping(value = "/SaveAttribute")
+    String saveAttribute(@ModelAttribute("attribute")  Attribute attribute)
+    {
+        Attributes.SaveAttribute(attribute);
+        return "redirect:/Admin/Attribute";
     }
     @RequestMapping("/Admin/EditAttribute")
     String editAttribute(Model model){

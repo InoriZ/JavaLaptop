@@ -14,5 +14,8 @@ public class AttributeService {
     AttributeRepository Attributes;
     public Attribute getAAttribute(int id){return Attributes.getById(id);}
     public List<Attribute> getAllAttribute(){return Attributes.findAll();}
-
+    public void SaveAttribute(Attribute attribute)
+    {
+        this.Attributes.save(attribute);
+    }
 }
