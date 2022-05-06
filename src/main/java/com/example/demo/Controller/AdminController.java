@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
@@ -53,10 +54,9 @@ public class AdminController extends BaseController{
         Categories.SaveCategory(category);
         return "redirect:/Admin/Category";
     }
-    @RequestMapping("/Admin/EditCategory")
-    String editCategory(Model model){
-        model.addAttribute("something","some thing from controller");
-        model.addAttribute("listCategoryHome", Categories.GetAllCategory());
+    @RequestMapping("/Admin/EditCategory/{idCategory}")
+    String editCategory(@PathVariable (value= "idCategory") int idCategory, Model model){
+        model.addAttribute("category", Categories.getCategorybyid(idCategory));
         return "/Admin/editCategory";
     }
     @RequestMapping("/Admin/AddAttribute")
@@ -73,10 +73,9 @@ public class AdminController extends BaseController{
         Attributes.SaveAttribute(attribute);
         return "redirect:/Admin/Attribute";
     }
-    @RequestMapping("/Admin/EditAttribute")
-    String editAttribute(Model model){
-        model.addAttribute("something","some thing from controller");
-        model.addAttribute("listCategoryHome", Categories.GetAllCategory());
+    @RequestMapping("/Admin/EditAttribute/{id}")
+    String editAttribute(@PathVariable (value= "id") int id, Model model){
+        model.addAttribute("attribute", Attributes.getAttributebyid(id));
         return "/Admin/EditAttribute";
     }
     @RequestMapping("/Admin/AddProduct")
