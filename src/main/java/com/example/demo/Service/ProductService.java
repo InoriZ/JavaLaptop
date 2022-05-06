@@ -27,16 +27,23 @@ public class ProductService extends BaseService{
     }
 
     public Product getProductDetail(Integer id){
-        return Products.getById(id);
+        return Products.getById(id);        
     }
-    public Product getProductbyid (int idProduct){
+    public void SaveProduct(Product product, Integer idCate)
+    {
+        var category=Categories.getById(idCate);
+        product.setCategory(category);
+        this.Products.save(product);
+    }
+
+    public Product getProductbyid (Integer idProduct){
         Optional <Product> optional = Products.findById(idProduct);
         Product product = null;
         if(optional.isPresent()){
             product = optional.get();
         }else {
-            throw new RuntimeException("Attribute not found for id::" + idProduct);
+            throw new RuntimeException("Product not found for id::" + idProduct);
         }
         return product;
-    }
+}
 }

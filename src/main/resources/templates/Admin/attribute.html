@@ -44,7 +44,7 @@
     
                                 <td>
                                     <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style="margin-top:0px !important">
-                                        <button class="btn btn-primary" type="button" pdID="@item.IDProduct" name="delete">XÓA</button>
+                                        <a th:href="@{/Admin/DeleteAttribute/{id}(id=${attribute.id})}" class="btn btn-primary"> XÓA </a>
                                     </div>
                                 </td>
                             </tr>

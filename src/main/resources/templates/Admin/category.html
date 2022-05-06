@@ -43,7 +43,7 @@
                                 </td>
                                 <td>
                                     <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style="margin-top:0px !important">
-                                        <button class="btn btn-primary" name="delete" ctgrID2="@item.IDCategory">XÓA</button>
+                                        <a th:href="@{/Admin/DeleteCategory/{idCategory}(idCategory=${category.idCategory})}" class="btn btn-primary"> XÓA </a>
                                     </div>
                                 </td>                                
                             </tr>  

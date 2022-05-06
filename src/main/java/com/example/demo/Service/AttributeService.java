@@ -29,5 +29,7 @@ public class AttributeService {
         }
         return attribute;
     }
-    
+    public void deleteAttributebyId (int id){
+        Attributes.deleteById(id);
+    }
 }

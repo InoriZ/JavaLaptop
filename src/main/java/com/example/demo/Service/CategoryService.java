@@ -24,9 +24,13 @@ public class CategoryService extends BaseService{
         if(optional.isPresent()){
             category = optional.get();
         }else {
-            throw new RuntimeException("Attribute not found for id::" + idCategory);
+            throw new RuntimeException("Category not found for id::" + idCategory);
         }
         return category;
+    }
+    
+    public void deleteCategorybyId (int idCategory){
+        Categories.deleteById(idCategory);
     }
 
 }
