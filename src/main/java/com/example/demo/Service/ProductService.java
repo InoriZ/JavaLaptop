@@ -7,6 +7,7 @@ import com.example.demo.Model.Product;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 @Service
 public class ProductService extends BaseService{
 
@@ -27,8 +28,15 @@ public class ProductService extends BaseService{
 
     public Product getProductDetail(Integer id){
         return Products.getById(id);
-        
-
-   
+    }
+    public Product getProductbyid (int idProduct){
+        Optional <Product> optional = Products.findById(idProduct);
+        Product product = null;
+        if(optional.isPresent()){
+            product = optional.get();
+        }else {
+            throw new RuntimeException("Attribute not found for id::" + idProduct);
+        }
+        return product;
     }
 }

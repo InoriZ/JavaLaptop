@@ -51,7 +51,7 @@
                                 </td>   
                                 <td>
                                     <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style="margin-top:0px !important">
-                                        <button class="btn btn-primary btn-edit" type="button" pID="@item.IDProduct" >SỬA</button>
+                                        <a th:href="@{/Admin/EditProduct/{idProduct}(idProduct=${product.idProduct})}" class="btn btn-primary"> SỬA </a>
                                     </div>
                                 </td>
     
