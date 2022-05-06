@@ -26,9 +26,12 @@ public class ProductService extends BaseService{
     }
 
     public Product getProductDetail(Integer id){
-        return Products.getById(id);
-        
-
-   
+        return Products.getById(id);        
+    }
+    public void SaveProduct(Product product, Integer idCate)
+    {
+        var category=Categories.getById(idCate);
+        product.setCategory(category);
+        this.Products.save(product);
     }
 }

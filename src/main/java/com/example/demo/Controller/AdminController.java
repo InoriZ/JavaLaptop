@@ -3,6 +3,7 @@ package com.example.demo.Controller;
 
 import com.example.demo.Model.Attribute;
 import com.example.demo.Model.Category;
+import com.example.demo.Model.Product;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -82,7 +83,17 @@ public class AdminController extends BaseController{
     String addProduct(Model model){
         model.addAttribute("something","some thing from controller");
         model.addAttribute("listCategoryHome", Categories.GetAllCategory());
+        Product product=new Product();
+        model.addAttribute("product", product);
         return "/Admin/AddProduct";
+    }
+    @PostMapping(value = "/SaveProduct")
+    String saveProduct(@ModelAttribute("product")  Product product, Integer idCate)
+    {
+        System.out.println(idCate);
+        System.out.println(product.getName());
+        Products.SaveProduct(product,idCate);
+        return "redirect:/Admin/Product";
     }
     @RequestMapping("/Admin/EditProduct")
     String editProduct(Model model){
