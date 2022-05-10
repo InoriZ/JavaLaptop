@@ -1,14 +1,23 @@
 package com.example.demo.Controller;
 
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+
 import com.example.demo.Model.Attribute;
 import com.example.demo.Model.Category;
 import com.example.demo.Model.Product;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +26,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class AdminController extends BaseController{
+    private long copy;
     @RequestMapping("/Admin/Product")
     String product(Model model){
         model.addAttribute("listProduct",Products.getAllProduct());
@@ -97,16 +107,32 @@ public class AdminController extends BaseController{
     String addProduct(Model model){
         model.addAttribute("something","some thing from controller");
         model.addAttribute("listCategoryHome", Categories.GetAllCategory());
+        // model.addAttribute("listProAttr", attributeValue)
         Product product=new Product();
         model.addAttribute("product", product);
         return "/Admin/AddProduct";
     }
     @PostMapping(value = "/SaveProduct")
-    String saveProduct(@ModelAttribute("product")  Product product, Integer idCate)
+    String saveProduct(@ModelAttribute("product")  Product product, Integer idCate, @RequestParam("imgUp") MultipartFile MultiPartFile) throws IOException
     {
-        System.out.println(idCate);
-        System.out.println(product.getName());
+        String fileName=StringUtils.cleanPath(MultiPartFile.getOriginalFilename());
+        product.setImageUrl(fileName);
         Products.SaveProduct(product,idCate);
+        String uploadDir="./src/main/resources/static/Image/ImageProduct/";
+
+        Path uploadPath=Paths.get(uploadDir);
+
+        if(!Files.exists(uploadPath))
+        {
+            Files.createDirectories(uploadPath);
+        }
+        try {
+            InputStream inputStream=MultiPartFile.getInputStream();
+        Path filepPath=uploadPath.resolve(fileName);
+        copy = Files.copy(inputStream,filepPath, StandardCopyOption.REPLACE_EXISTING);
+        } catch (Exception e) {
+            throw new IOException("Upload thất bại");
+        }
         return "redirect:/Admin/Product";
     }
     @RequestMapping("/Admin/EditProduct/{idProduct}")

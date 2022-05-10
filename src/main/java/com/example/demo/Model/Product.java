@@ -6,7 +6,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "Product")
@@ -25,6 +27,14 @@ public class Product implements Serializable {
     @JsonIgnore
     List<ProductAttribute> productAttributes = new ArrayList<>();
 
+    // @ManyToMany
+    // @JoinTable
+    // (
+    //     name = "ProductAttribute",
+    //     joinColumns = @JoinColumn(name="IDProduct"),
+    //     inverseJoinColumns = @JoinColumn(name="IDAttribute")
+    // )
+    // private Set<ProductAttribute> productAttributes2=new HashSet<>();
     public Product() {
     }
 
@@ -136,4 +146,16 @@ public class Product implements Serializable {
     public void setDelete(Boolean delete) {
         isDelete = delete;
     }
+
+    // public Set<ProductAttribute> getProductAttributes2() {
+    //     return productAttributes2;
+    // }
+
+    // public void setProductAttributes2(Set<ProductAttribute> productAttributes2) {
+    //     this.productAttributes2 = productAttributes2;
+    // }
+    // public void addProductAttribute(ProductAttribute productAttribute)
+    // {
+    //     this.productAttributes2.add(productAttribute);
+    // }
 }

@@ -142,7 +142,7 @@
                     <div class="closever2">
                         <i class="fas fa-times-circle"></i>
                     </div>
-                    <form id="addform" th:action="@{/SaveProduct}" th:object="${product}" method="post">
+                    <form id="addform" th:action="@{/SaveProduct}" th:object="${product}" method="post" enctype="multipart/form-data">
                         <div class="modal-body">
                             <div class="modal-product-name">
                                 <label for="text-tickets" class="modal-label">
@@ -187,31 +187,10 @@
                             <div class="form-group upload-form" id="uploadForm" style="margin-top:20px">
                                 <h4>Thêm ảnh</h4>
                                 <input type="file" name="imgUp" class="form-control-file" id="imgUp"
-                                    accept=".jpg, .jpeg, .png">
+                                    accept=".jpg, .jpeg, .png">                              
                             </div>
 
-                            <div class="add-attribute row" style="max-height:200px">
-                                <table class="table table-bordered">
-                                    <thead class="bg-dark" style="color:white">
-                                        <tr>
-                                            <td class="col-8">Attribute Name</td>
-                                            <td class="col-4">Value</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- @foreach (var item in ViewBag.Attributes)
-                                        {
-                                            <tr>
-                                                <td>@item.AttributeName</td>
-                                                <td>
-                                                    <input type="text" name="attrValue" placeholder="Default Value">
-                                                    <input name="attr" type="hidden" value="@item.IDAttribute">
-                                                </td>
-                                            </tr>
-                                        } -->
-                                    </tbody>
-                                </table>
-                            </div>
+                           
 
                         </div>
 
