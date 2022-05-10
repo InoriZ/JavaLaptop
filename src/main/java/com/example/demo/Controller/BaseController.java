@@ -15,4 +15,6 @@ public class BaseController {
     protected ProductAttributeService ProductAttributes;
     @Autowired
     protected AccountService Accounts;
+    @Autowired
+    protected CartService Carts;
 }

@@ -7,6 +7,7 @@
 
     <!-- CSS only -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
@@ -50,15 +51,15 @@
                                     <div class="aspand"></div>
                                     <p th:text=${listProduct.Price}></p>
 
-                                    <form>
-                                        <input type="hidden" name="iDProduct" value="@Model.IDProduct" />
+                                    <form >
+                                        <input type="hidden" name="idProduct" th:value="${listProduct.idProduct}" />
                                         <label for="quantity"> Nhập số lượng:</label>
                                         <br />
-                                        <input type=number min="1" max="@Model.Stock" name="quantity" id="quantity"
-                                            value="0" />
+                                        <input type=number min="1"  name="quantity" id="quantity"
+                                            value="1" />
                                         <br />
                                         <br />
-                                        <button class="btn btn-danger" style="">Thêm vào giỏ hàng</button>
+                                        <button class="btn btn-danger" >Thêm vào giỏ hàng</button>
                                     </form>
                                     <!-- <div class="text-danger">@TempData["messageAddItem"]</div> -->
                                     <br />
@@ -66,13 +67,13 @@
                                     <strong style="color: red">
                                         Chi tiết Sản Phẩm:
                                     </strong>
-                                    <p  th:text=${listProduct.Description}>
-                                       
-                                    </p>
+                                        <p  th:text=${listProduct.Description}>
+                                        
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div style="margin: 40px" class="fw-bold">
-                                <strong style="color: red">Thông tin sản phẩm</strong>
+                                <div style="margin: 40px" class="fw-bold">
+                                    <strong style="color: red">Thông tin sản phẩm</strong>
                                
                                 <br />
                                 <ul>
@@ -90,6 +91,18 @@
                 </div>
             </div>
         </section>
+        <script>
+            $('form').submit(function(e){
+
+                e.preventDefault(); 
+                $.post('/Cart/AddManyToCart',$(this).serialize(),(r)=>{
+                    alert(r.Result)
+                    if(r.Status==false){
+                        window.location.href = r.url;
+                    }
+                })
+            })
+        </script>
     </div>
 </body>
 

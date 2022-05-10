@@ -3,18 +3,25 @@ package com.example.demo.Model;
 
 
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+
+
 @Entity
 @Table
-public class Account {
+public class Account implements Serializable{
     
     @Column(name = "Idaccount")
     @Id
@@ -38,6 +45,28 @@ public class Account {
     @JoinColumn(name = "idrole")
     Role AccountRole;
 
+    @OneToMany(mappedBy = "account")
+    List<Cart> Carts = new ArrayList<>();
+
+
+    
+
+
+    public void setAccountRole(Role accountRole) {
+        AccountRole = accountRole;
+    }
+
+
+    public List<Cart> getCarts() {
+        return Carts;
+    }
+
+
+    public void setCarts(List<Cart> carts) {
+        Carts = carts;
+    }
+
+
     public Account(){}
     
 
@@ -60,8 +89,11 @@ public class Account {
     }
 
 
+  
+
+
     public Account(String iDAccount, String user, byte[] password, String email, Boolean isDelete, String fullName,
-            Boolean gender, Role accountRole) {
+            Boolean gender, Role accountRole, List<Cart> carts) {
         IDAccount = iDAccount;
         this.user = user;
         this.password = password;
@@ -70,6 +102,7 @@ public class Account {
         FullName = fullName;
         Gender = gender;
         AccountRole = accountRole;
+        Carts = carts;
     }
 
 
@@ -132,6 +165,19 @@ public class Account {
 
     public Role getRole() {
         return this.AccountRole;
+    }
+    public String getUser() {
+        return user;
+    }
+
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+
+    public Role getAccountRole() {
+        return AccountRole;
     }
 
     

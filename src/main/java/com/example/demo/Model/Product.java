@@ -27,6 +27,7 @@ public class Product implements Serializable {
     @JsonIgnore
     List<ProductAttribute> productAttributes = new ArrayList<>();
 
+<<<<<<< HEAD
     // @ManyToMany
     // @JoinTable
     // (
@@ -35,6 +36,29 @@ public class Product implements Serializable {
     //     inverseJoinColumns = @JoinColumn(name="IDAttribute")
     // )
     // private Set<ProductAttribute> productAttributes2=new HashSet<>();
+=======
+    @OneToMany(mappedBy = "product")
+    List<ProductCart> productCarts = new ArrayList<>();
+    
+
+    
+
+    public Product(int idProduct, Category category, String name, List<ProductAttribute> productAttributes,
+            List<ProductCart> productCarts, int price, Integer stock, String imageUrl, Boolean isDelete,
+            String description) {
+        this.idProduct = idProduct;
+        this.category = category;
+        this.name = name;
+        this.productAttributes = productAttributes;
+        this.productCarts = productCarts;
+        this.price = price;
+        this.stock = stock;
+        this.imageUrl = imageUrl;
+        this.isDelete = isDelete;
+        this.description = description;
+    }
+
+>>>>>>> 0ea1cee1848c71532c1386974c4f204bed547ecf
     public Product() {
     }
 
@@ -68,7 +92,21 @@ public class Product implements Serializable {
 
 
 
+    public List<ProductCart> getProductCarts() {
+        return productCarts;
+    }
 
+    public void setProductCarts(List<ProductCart> productCarts) {
+        this.productCarts = productCarts;
+    }
+
+    public Boolean getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Boolean isDelete) {
+        this.isDelete = isDelete;
+    }
 
     public String getName() {
         return name;

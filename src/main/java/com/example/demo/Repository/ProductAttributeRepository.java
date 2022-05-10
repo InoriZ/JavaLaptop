@@ -7,5 +7,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProductAttributeRepository extends JpaRepository<ProductAttribute ,Integer >{
-    public ProductAttribute findById(int id);
 }
