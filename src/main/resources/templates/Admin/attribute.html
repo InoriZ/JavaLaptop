@@ -38,13 +38,13 @@
                                     </td>
                                 <td>
                                     <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style="margin-top:0px !important">
-                                        <button class="btn btn-primary btn-edit" type="button" pID="@item.IDProduct">SỬA</button>
+                                       <a th:href="@{/Admin/EditAttribute/{id}(id=${attribute.id})}" class="btn btn-primary"> SỬA </a>
                                     </div>
                                 </td>
     
                                 <td>
                                     <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style="margin-top:0px !important">
-                                        <button class="btn btn-primary" type="button" pdID="@item.IDProduct" name="delete">XÓA</button>
+                                        <a th:href="@{/Admin/DeleteAttribute/{id}(id=${attribute.id})}" class="btn btn-primary"> XÓA </a>
                                     </div>
                                 </td>
                             </tr>
@@ -55,7 +55,7 @@
                 </table>
                 <div class="form-group">
                     <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                        <button class="btn btn-primary btn-add" href="#">Thêm Thuộc Tính</button>
+                        <a class="btn btn-primary btn-add" th:href="@{/Admin/AddAttribute}">Thêm Thuộc Tính</a>
                     </div>
                 </div>
             </div>

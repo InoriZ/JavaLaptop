@@ -1,5 +1,7 @@
 package com.example.demo.Service;
 
+
+
 import com.example.demo.Helper.Helper;
 import com.example.demo.Model.Account;
 import com.example.demo.SideModel.ReturnJsonObject;
@@ -33,4 +35,5 @@ public class AccountService extends BaseService{
     public Account findAccount(String user){
         return Accounts.findByUser(user);
     }
+   
 }

@@ -12,7 +12,7 @@ import java.util.List;
 @Table(name = "Product")
 public class Product implements Serializable {
     @Id
-    @GeneratedValue(strategy =GenerationType.AUTO)
+    @GeneratedValue(strategy =GenerationType.IDENTITY)
     @Column(name="Idproduct")
     int idProduct;
 
@@ -60,8 +60,7 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-    int price;
-
+    Integer price;
     Integer stock;
     @Column(name="imageurl")
     String imageUrl;
@@ -104,7 +103,7 @@ public class Product implements Serializable {
         this.name = name;
     }
 
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
@@ -112,7 +111,7 @@ public class Product implements Serializable {
         this.price = price;
     }
 
-    public int getStock() {
+    public Integer getStock() {
         return stock;
     }
 
