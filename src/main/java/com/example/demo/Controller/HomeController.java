@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 // import groovyjarjarantlr4.v4.parse.ANTLRParser.id_return;
 
@@ -33,7 +36,9 @@ public class HomeController extends BaseController{
         // System.out.println("test 1 chutsssssssss:" +test2.getRole().getRoleName());
 
         Product test = Products.getProduct();
-        System.out.println(test.getName());
+        // System.out.println(test.getName());
+        Carts.test();
+
 
 
         model.addAttribute("listCourses", test);
@@ -69,7 +74,7 @@ public class HomeController extends BaseController{
        
         model.addAttribute("listCategoryHome", Categories.GetAllCategory());
         return "/Home/ProductbyCate";
-        
-       
     }
+
+    
 }

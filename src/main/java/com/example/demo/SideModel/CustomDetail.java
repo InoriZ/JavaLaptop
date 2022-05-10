@@ -26,6 +26,10 @@ public class CustomDetail implements UserDetails {
         return roles;
     }
 
+    public String getUserId(){
+        return this.user.getIDAccount();
+    }
+
     @Override
     public String getPassword() {
 

@@ -48,7 +48,7 @@ public class AdminController extends BaseController{
     }
     @PostMapping(value="/SaveCategory")
     public String SaveCategory(@ModelAttribute("category")  Category category) {
-        //TODO: process POST request
+  
         Categories.SaveCategory(category);
         return "redirect:/Admin/Category";
     }

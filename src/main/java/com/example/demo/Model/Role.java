@@ -1,5 +1,6 @@
 package com.example.demo.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -15,7 +16,7 @@ import javax.persistence.Table;
 @Entity
 @Table
 
-public class Role {
+public class Role implements Serializable{
     @Id
     @Column(name = "idrole")
     private UUID idRole;  
