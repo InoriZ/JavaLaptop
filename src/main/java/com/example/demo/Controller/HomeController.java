@@ -47,7 +47,7 @@ public class HomeController extends BaseController{
     }
     @RequestMapping("/ProductDetail/{id}")
     String ProductDetail (@PathVariable Integer id, Model model) {
-
+        model.addAttribute("listCategoryHome", Categories.GetAllCategory());
         model.addAttribute("listProduct", Products.getProductDetail(id));
        
         return "/Product/ProductDetail";

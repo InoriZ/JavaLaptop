@@ -60,6 +60,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .and()
             .logout()
             .logoutUrl("/Logout")
+            .logoutSuccessUrl("/")
             .deleteCookies("JSONSESSION","JSESSIONID")
             .and()
             .rememberMe().userDetailsService(this.uService)

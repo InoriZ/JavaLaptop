@@ -27,16 +27,6 @@ public class Product implements Serializable {
     @JsonIgnore
     List<ProductAttribute> productAttributes = new ArrayList<>();
 
-<<<<<<< HEAD
-    // @ManyToMany
-    // @JoinTable
-    // (
-    //     name = "ProductAttribute",
-    //     joinColumns = @JoinColumn(name="IDProduct"),
-    //     inverseJoinColumns = @JoinColumn(name="IDAttribute")
-    // )
-    // private Set<ProductAttribute> productAttributes2=new HashSet<>();
-=======
     @OneToMany(mappedBy = "product")
     List<ProductCart> productCarts = new ArrayList<>();
     
@@ -58,7 +48,6 @@ public class Product implements Serializable {
         this.description = description;
     }
 
->>>>>>> 0ea1cee1848c71532c1386974c4f204bed547ecf
     public Product() {
     }
 
