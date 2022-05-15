@@ -1,6 +1,5 @@
 package com.example.demo.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.example.demo.Model.AccountAddress;
@@ -14,9 +13,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AddressService extends BaseService {
-    public void Test(){
-        var check = AccountAddress.count();
-    }
     public List<AccountAddress> GetListAddress(){
         var accountName = SecurityContextHolder.getContext().getAuthentication().getName();
         var account = Accounts.findByUser(accountName);

@@ -22,7 +22,7 @@ public class Invoice {
     @Type(type = "uuid-char")
 
     @Column(name = "idinvoice")
-    UUID idIvoice;
+    UUID idInvoice;
     @Column(name = "datecreated")
     Date dateCreated;
     @Column(name = "dateexpired")
@@ -44,7 +44,7 @@ public class Invoice {
 
 
     public Invoice(UUID idIvoice, Date dateCreated, Date dateExpired, Cart cart, Address address, Status status) {
-        this.idIvoice = idIvoice;
+        this.idInvoice = idIvoice;
         this.dateCreated = dateCreated;
         this.dateExpired = dateExpired;
         this.cart = cart;
@@ -53,13 +53,13 @@ public class Invoice {
     }
 
 
-    public UUID getIdIvoice() {
-        return idIvoice;
+    public UUID getIdInvoice() {
+        return idInvoice;
     }
 
 
     public void setIdIvoice(UUID idIvoice) {
-        this.idIvoice = idIvoice;
+        this.idInvoice = idIvoice;
     }
 
 

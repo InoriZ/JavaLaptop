@@ -20,4 +20,6 @@ public class BaseController {
     protected CartService Carts;
     @Autowired
     protected AddressService Address;
+    @Autowired
+    protected InvoicesService Invoices;
 }

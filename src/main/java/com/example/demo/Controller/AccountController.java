@@ -1,7 +1,6 @@
 package com.example.demo.Controller;
 
-import com.example.demo.Model.Address;
-import com.example.demo.Model.Account;
+
 import com.example.demo.SideModel.ReturnJsonObject;
 import com.example.demo.SideModel.SignUpModel;
 
@@ -12,10 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-// import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.RequestMapping;
-// import org.springframework.web.bind.annotation.RequestMethod;
+
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -124,5 +122,18 @@ public class AccountController extends BaseController{
       var accountName = SecurityContextHolder.getContext().getAuthentication().getName();
       model.addAttribute("accounts", Accounts.findAccount(accountName));
       return "/Account/Index";
+    }
+
+    @RequestMapping("/Account/Invoice")
+    String invoice(Model model){
+        model.addAttribute("invoices", Invoices.getAllInvoice());
+        return "/Account/Invoice";
+    }
+
+    @PostMapping("/Account/Charge")
+    @ResponseBody
+    Object charge(){
+        
+        return Carts.charge();
     }
 }

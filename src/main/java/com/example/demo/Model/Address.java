@@ -102,6 +102,16 @@ public class Address implements Serializable {
         this.accountAddresses = accountAddresses;
     }
 
+
+    public List<Invoice> getInvoices() {
+        return invoices;
+    }
+
+
+    public void setInvoices(List<Invoice> invoices) {
+        this.invoices = invoices;
+    }
+
     
     
     

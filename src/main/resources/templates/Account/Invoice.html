@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Địa chỉ</title>
+    <title>Hoá đơn</title>
     
 </head>
 
@@ -20,49 +20,46 @@
         <input type="hidden" name="checkNull" value="1" />
 
     } -->
-            <h1 class="mt-4">ĐỊA CHỈ</h1>
+            <h1 class="mt-4">HOÁ ĐƠN</h1>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item"><a href="/account">Tài khoản</a></li>
-                <li class="breadcrumb-item active">Địa chỉ</li>
+                <li class="breadcrumb-item active">Hoá đơn</li>
             </ol>
             <table class="table table-bordered">
                 <thead class="bg-dark text-light">
                     <tr>
-                        <td>Địa chỉ</td>
-                        <td>Người nhận</td>
-                        <td>Số điện thoại</td>
-                        <td>Địa chỉ chính</td>
-
-
                         
-
-
+                        <td>Địa chỉ</td>
+                        <td>Giá trị đơn hàng</td>
+                        <td>Ngày đặt mua</td>
+                        <td>Tình trạng</td>
+                        <td>Chi tiết đơn hàng</td>
                     </tr>
                 </thead>
                 <tbody>
-                    
-                    <tr style="text-align:center" th:each="item : ${listAddress}">
+                    <tr th:each="item : ${invoices}">
                         <td>
-                            <p th:text="${item.address.address}"><h5 style="color:black;max-width:400px"></h5></p>
+                            <div  th:text="${item.address.address}"></div>
                         </td>
                         <td>
-                            <p  th:text="${item.address.phone} "><h5 style="color:black"></h5></p>
+                            <div class="money" th:text="${item.cart.getCartTotal()}"></div>
                         </td>
                         <td>
-                            <p  th:text="${item.address.receiver} " ><h5 style="color:black"></h5></p>
+                            <div  th:text="${item.dateCreated}"></div>
                         </td>
                         <td>
-                            <input type="radio" name="isDefault" th:value="${item.address.idAddress}" th:checked="${item.isDefault}">
-                            <!-- <p  th:text="${item.isDefault} " ><h5 style="color:black"></h5></p> -->
+                            <div  th:text="${item.status.statusName}"></div>
                         </td>
-                        
+                        <td>
+                            <div ><a th:href="@{'/Account/InvoiceDetail/' + ${item.idInvoice}}"
+                                class="btn btn-primary"><i class="fa-solid fa-circle-info"></i></a></div>
+                        </td>
                     </tr>
+                    
                 </tbody>
             </table>
             
-            <div class="d-flex justify-content-end">
-                <a href="/Account/AddAddress" class="btn btn-danger" style="margin-left:20px">Thêm địa chỉ</a>
-            </div>
+            
 
         </div>
         <script>
@@ -73,7 +70,18 @@
 
                 })
 
+            });
+            $().ready(function(){
+                $('.money').each(function(){
+                    var text = $(this).text();
+                    $(this).text(numberWithCommas(text) + ' VNĐ')
+                })
             })
+
+            function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+            
         </script>
 
     </div>
