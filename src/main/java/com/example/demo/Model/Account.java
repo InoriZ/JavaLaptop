@@ -48,8 +48,36 @@ public class Account implements Serializable{
     @OneToMany(mappedBy = "account")
     List<Cart> Carts = new ArrayList<>();
 
+    @OneToMany(mappedBy = "account")
+    List<AccountAddress> accountAddresses = new ArrayList<>();
+
 
     
+
+
+    public List<AccountAddress> getAccountAddresses() {
+        return accountAddresses;
+    }
+
+
+    public void setAccountAddresses(List<AccountAddress> accountAddresses) {
+        this.accountAddresses = accountAddresses;
+    }
+
+
+    public Account(String iDAccount, String user, byte[] password, String email, Boolean isDelete, String fullName,
+            Boolean gender, Role accountRole, List<Cart> carts, List<AccountAddress> accountAddresses) {
+        IDAccount = iDAccount;
+        this.user = user;
+        this.password = password;
+        this.email = email;
+        IsDelete = isDelete;
+        FullName = fullName;
+        Gender = gender;
+        AccountRole = accountRole;
+        Carts = carts;
+        this.accountAddresses = accountAddresses;
+    }
 
 
     public void setAccountRole(Role accountRole) {

@@ -1,6 +1,5 @@
 package com.example.demo.Model;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -14,8 +13,8 @@ import java.util.Set;
 @Table(name = "Product")
 public class Product implements Serializable {
     @Id
-    @GeneratedValue(strategy =GenerationType.IDENTITY)
-    @Column(name="Idproduct")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Idproduct")
     int idProduct;
 
     @ManyToOne
@@ -29,9 +28,13 @@ public class Product implements Serializable {
 
     @OneToMany(mappedBy = "product")
     List<ProductCart> productCarts = new ArrayList<>();
-    
-
-    
+    Integer price;
+    Integer stock;
+    @Column(name = "imageurl")
+    String imageUrl;
+    @Column(name = "isdelete")
+    Boolean isDelete;
+    String description;
 
     public Product(int idProduct, Category category, String name, List<ProductAttribute> productAttributes,
             List<ProductCart> productCarts, int price, Integer stock, String imageUrl, Boolean isDelete,
@@ -51,7 +54,8 @@ public class Product implements Serializable {
     public Product() {
     }
 
-    public Product( Category category, String name, int price, Integer stock, String imageUrl, Boolean isDelete, String description) {
+    public Product(Category category, String name, int price, Integer stock, String imageUrl, Boolean isDelete,
+            String description) {
 
         this.category = category;
         this.name = name;
@@ -62,15 +66,6 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-    Integer price;
-    Integer stock;
-    @Column(name="imageurl")
-    String imageUrl;
-    @Column(name="isdelete")
-    Boolean isDelete;
-    String description;
-    
-
     public int getIdProduct() {
         return idProduct;
     }
@@ -78,8 +73,6 @@ public class Product implements Serializable {
     public void setIdProduct(int idProduct) {
         this.idProduct = idProduct;
     }
-
-
 
     public List<ProductCart> getProductCarts() {
         return productCarts;
@@ -140,7 +133,6 @@ public class Product implements Serializable {
     public String getDescription() {
         return description;
     }
-
 
     public void setDescription(String description) {
         this.description = description;

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="/layout/_layoutAdmin.html">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .error{
+            color: red;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <div class="container-fluid">
+  
+            <h1 class="mt-4">THÊM ĐỊA CHỈ</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item"><a href="/account">Tài khoản</a></li>
+                <li class="breadcrumb-item active">Thêm địa chỉ</li>
+            </ol>
+            <form id="test">
+                <div class="form-group">
+                    <label for="address">Địa chỉ</label>
+                    <input type="text" class="form-control" id="address" name="address"
+                        placeholder="Điền địa chỉ của bạn">
+
+                </div>
+
+                <div class="form-group">
+                    <label for="receiver">Người nhận</label>
+                    <input type="text" class="form-control" id="receiver" name="receiver"
+                        placeholder="Nhập tên người nhận">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Số điện thoại người nhận</label>
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Nhập số điện thoại">
+
+                </div>
+
+                <button  class="btn btn-primary">Submit</button>
+            </form>
+
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+
+
+        <script>
+            $().ready(function () {
+
+                $('#test').validate({
+
+                    rules: {
+                        address: {
+                            required: true,
+                            minlength: 10,
+                            maxlength: 100,
+                        },
+                        phone: {
+                            required: true,
+                            minlength: 10,
+                            maxlength: 11,
+                            number:true,
+                            },
+                        receiver: {
+                            required: true,
+                            minlength: 10,
+                            maxlength: 100,
+                            },
+
+                    },
+                    messages: {
+                        address: {
+                            required: "Vui lòng nhập tên thuộc tính",
+                            minlength: "Ít nhất nhập 10 kí tự",
+                            maxlength: "Nhập nhiều nhất 500 kí tự",
+                        },
+                        phone: {
+                            required: "Vui lòng nhập tên thuộc tính",
+                            minlength: "Ít nhất nhập 10 kí tự",
+                            maxlength: "Nhập nhiều nhất 11 kí tự",
+                            number:"Nhập chữ số"
+                        },
+                        receiver: {
+                            required: "Vui lòng nhập tên thuộc tính",
+                            minlength: "Ít nhất nhập 10 kí tự",
+                            maxlength: "Nhập nhiều nhất 100 kí tự",
+                        },
+                    },
+                    submitHandler: function (form) {
+                        
+                        $.post('/Account/AddAddress',$(form).serialize(),(r)=>{
+                            console.log(r);
+                            alert(r.Result);
+                            window.location.href = "/";
+                        })
+                    }
+                })
+            });
+        </script>
+    </div>
+</body>

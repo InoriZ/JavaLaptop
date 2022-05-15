@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
@@ -32,6 +33,10 @@ public class Cart implements Serializable{
 
     @OneToMany(mappedBy = "cart")
     List<ProductCart> ProductCarts = new ArrayList<>();
+
+    @OneToOne(mappedBy = "cart")
+    Invoice invoice;
+
 
     public Cart(){
         
@@ -59,7 +64,29 @@ public class Cart implements Serializable{
     public void setAccount(Account account) {
         this.account = account;
     }
+    public List<ProductCart> getProductCarts() {
+        return ProductCarts;
+    }
+    public void setProductCarts(List<ProductCart> productCarts) {
+        ProductCarts = productCarts;
+    }
+    public Invoice getInvoice() {
+        return invoice;
+    }
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
+    }
 
+    public Integer getCartTotal(){
+        Integer total = 0;
+        for (ProductCart productCart : ProductCarts) {
+            total+= productCart.getTotal();
+        }
+        return total;
+    }
+    
+
+    
     
 
     

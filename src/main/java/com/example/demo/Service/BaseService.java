@@ -27,4 +27,10 @@ public class BaseService {
     @Autowired 
     protected ProductAttributeRepository ProductAttr;
 
+    @Autowired
+    protected AddressRepository Address;
+
+    @Autowired
+    protected AccountAddressRepository AccountAddress;
+
 }

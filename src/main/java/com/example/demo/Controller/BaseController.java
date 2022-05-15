@@ -1,5 +1,6 @@
 package com.example.demo.Controller;
 
+
 import com.example.demo.Service.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,4 +18,6 @@ public class BaseController {
     protected AccountService Accounts;
     @Autowired
     protected CartService Carts;
+    @Autowired
+    protected AddressService Address;
 }

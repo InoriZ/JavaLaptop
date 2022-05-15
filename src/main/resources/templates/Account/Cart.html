@@ -39,36 +39,31 @@
                         <td>Giá tiền</td>
                         <td>Sô lượng</td>
                         <td>Tổng số tiền</td>
-                        <td>Tình trạng sản phẩm</td>
                         <td>Xoá sản phẩm</td>
 
 
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="product_tr">
-                        <td></td>
-                        <!-- <td><img src="~/Content/Image/@item.UrlImage" alt="@Html.Raw(item.ProductName)" width="150" height="150" /></td> -->
-                        <td>
-                            <div style="display:none" class="unitprice" val="@item.PaymentPrice"></div>
+                    <tr class="product_tr" th:each="item: ${cart.ProductCarts}">
+                        <td th:text="${item.product.name}"></td>
+                        <td >
+                            <img width="120" th:src="@{'/Image/ImageProduct/'+${item.product.imageUrl}}"
+                                                 alt="@{$(item.product.name)}" />
                         </td>
+                        
 
 
-                        <td><input type="number" class="quantity" name="quantity" value="@item.Quantity"
-                                cid="@item.IDCart" pid="@item.IDProduct" min="0" required /></td>
+                        <td >
+                            <div class="money" th:text="${item.product.price}"></div>
+                            </td>
                         <td>
-                            <div class="totalItem"></div>
+                            <input type="number" class="quantity" name="quantity" th:value="${item.quantity}" min="0" required /></td>
+                            
                         </td>
                         <td>
-                            <!-- @if (item.Stock <= 0)
-                        {
-                            <p class="text-danger">Hết hàng</p>
-                        }
-                        else
-                        {
-                            <p class="text-primary">Còn hàng</p>
+                            <div class="money" th:text="${item.getTotal()}"></div>
 
-                        } -->
 
                         </td>
                         <td><button name="delete" class="btn btn-outline-danger" cid="@item.IDCart"
@@ -79,10 +74,22 @@
                 </tbody>
             </table>
             <div class="d-flex justify-content-end">
-                <p>Tổng cộng: <b class="total"></b></p>
+                <p>Tổng cộng: <b class="money" th:text="${cart.getCartTotal()}"></b></p>
+            </div>
+            
+            <div class="d-flex justify-content-end" style="margin-bottom:10px;margin-top:10px">
+                Địa chỉ: <b th:text="${address.address}"></b>
+                </div>
+            <div class="d-flex justify-content-end" style="margin-bottom:10px;margin-top:10px">
+                Người nhận: <b th:text="${address.receiver}"></b>
+                
             </div>
             <div class="d-flex justify-content-end" style="margin-bottom:10px;margin-top:10px">
-                <button class="btn btn-primary btn-edit" type="button">Chỉnh địa chỉ.</button>
+                Số điện thoại: <b th:text="${address.phone}"></b>
+                
+            </div>
+            <div class="d-flex justify-content-end" style="margin-bottom:10px;margin-top:10px">
+                <a href="/Account/Address" class="btn btn-primary btn-edit">Chỉnh địa chỉ.</a>
             </div>
             <div class="d-flex justify-content-end">
                 <input type="hidden" name="addressCount" value="@ViewBag.AddressCount" />
@@ -95,5 +102,17 @@
             </div>
 
         </div>
+        <script>
+
+            $().ready(function(){
+                $('.money').each(function(){
+                    var text = $(this).text();
+                    $(this).text(numberWithCommas(text) + ' VNĐ')
+                })
+            })
+            function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        </script>
     </div>
 </body>
