@@ -125,6 +125,11 @@
         .modalver2.close {
             display: none;
         }
+        .error
+        {
+            display: block !important;
+            color: red;
+        }
     </style>
 </head>
 
@@ -142,21 +147,21 @@
                     <div class="closever2">
                         <i class="fas fa-times-circle"></i>
                     </div>
-                    <form id="addform" th:action="@{/SaveProduct}" th:object="${product}" method="post">
+                    <form id="addform" th:action="@{/SaveProduct}" th:object="${product}" method="post" enctype="multipart/form-data">
                         <div class="modal-body">
-                            <div class="modal-product-name">
+                            <div class="modal-product-name" id="">
                                 <label for="text-tickets" class="modal-label">
                                     Tên Sản Phẩm
                                 </label>
                                 <input style="max-width: 500px;" type="text" th:field="*{name}" class="modal-input"
-                                    placeholder="Name" name="productName2">
+                                    placeholder="Name" name="name" >
                             </div>
                             <div class="modal-product-price">
                                 <label for="text-tickets" class="modal-label">
                                     Giá Cả (VND)
                                 </label>
                                 <input style="max-width: 500px;" type="number" th:field="*{price}" class="modal-input" placeholder="Price"
-                                    name="productPrice2">
+                                    name="price">
                             </div>
 
                             <div class="modal-product-stock">
@@ -164,7 +169,7 @@
                                     Số Lượng
                                 </label>
                                 <input style="max-width: 500px;" type="text" th:field="*{stock}" class="modal-input" placeholder="Stock"
-                                    name="productStock2">
+                                    name="stock">
                             </div>
                             <div class="modal-product-description">
                                 <label for="text-tickets" class="modal-label">
@@ -179,7 +184,7 @@
                                 </label>
                                 <select  name="idCate" id="" class="form-control" onfocus='this.size=5;'
                                     onblur='this.size=1;' onchange='this.size=1; this.blur();' style="max-width:50%">
-                                    <option value="" Selected disabled hidden>Choose the Category</option>
+                                    <option value="" style="color: black !important" Selected disabled hidden>Choose the Category</option>
                                     <option th:each="category : ${listCategoryHome}" th:text="${category.CategoryName}" th:value="${category.idCategory}"></option>
                                 </select>
                             </div>
@@ -187,31 +192,10 @@
                             <div class="form-group upload-form" id="uploadForm" style="margin-top:20px">
                                 <h4>Thêm ảnh</h4>
                                 <input type="file" name="imgUp" class="form-control-file" id="imgUp"
-                                    accept=".jpg, .jpeg, .png">
+                                    accept=".jpg, .jpeg, .png">                              
                             </div>
 
-                            <div class="add-attribute row" style="max-height:200px">
-                                <table class="table table-bordered">
-                                    <thead class="bg-dark" style="color:white">
-                                        <tr>
-                                            <td class="col-8">Attribute Name</td>
-                                            <td class="col-4">Value</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- @foreach (var item in ViewBag.Attributes)
-                                        {
-                                            <tr>
-                                                <td>@item.AttributeName</td>
-                                                <td>
-                                                    <input type="text" name="attrValue" placeholder="Default Value">
-                                                    <input name="attr" type="hidden" value="@item.IDAttribute">
-                                                </td>
-                                            </tr>
-                                        } -->
-                                    </tbody>
-                                </table>
-                            </div>
+                           
 
                         </div>
 
@@ -224,6 +208,66 @@
                     </form>
                 </div>
             </div>
+            <script>
+                $().ready(function () {
+                    $('#addform').validate({
+                    rules: {
+                        name: {
+                            required: true,
+                            minlength: 6,
+                            maxlength: 256,
+                        },
+                        price: {
+                            required: true,
+                            minlength: 4,
+                            maxlength: 12,
+                            digits: true,
+                        },
+                        stock: {
+                            required: true,
+                            minlength: 0,
+                            maxlength: 9999,
+                            digits: true,
+                        },
+                        imgUp: {
+                            required: true,
+                        },
+    
+                        idCate: {
+                            required: true,
+                        },
+                    },
+                    messages: {
+                        name: {
+                            required: "Vui lòng nhập tên sản phẩm",
+                            minlength: "Ít nhất nhập 6 kí tự",
+                            maxlength: "Nhập nhiều nhất 256 kí tự",
+                        },
+                        price: {
+                            required: "Vui lòng nhập giá sản phẩm",
+                            minlength: "Giá không thể bé hơn đơn vị nghàn",
+                            maxlength: "Giá không thể hơn nghìn tỷ",
+                            digits: "Vui lòng nhập số",
+                        },
+                        stock: {
+                            required: "Vui lòng nhập số lượng sản phẩm",
+                            minlength: "Số lượng không thể bé hơn 0",
+                            maxlength: "Số lượng không thế lớn hơn 9999",
+                            digits: "Vui lòng nhập số",
+                        },
+    
+                        imgUp: {
+                            required: "Vui lòng chọn ảnh",
+                        },
+    
+                        idCate: {
+                            required: "Vui lòng chọn Category",
+                        }
+                        }
+                    })
+                });
+            </script>
         </div>
+        
     </div>
 </body>

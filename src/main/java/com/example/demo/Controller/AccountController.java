@@ -1,6 +1,7 @@
 package com.example.demo.Controller;
 
 import com.example.demo.Model.Address;
+import com.example.demo.Model.Account;
 import com.example.demo.SideModel.ReturnJsonObject;
 import com.example.demo.SideModel.SignUpModel;
 
@@ -53,7 +54,7 @@ public class AccountController extends BaseController{
     }
 
     @RequestMapping("/ForgetPassword")
-     String index(Model model) {
+     String ForgetPassword(Model model) {
 
 		model.addAttribute("message", "some thing from controller");
 
@@ -115,5 +116,13 @@ public class AccountController extends BaseController{
     Object ChangeDF(Integer id){
         
         return Address.ChangeDF(id);
+    }
+    @RequestMapping("/Account/Index")
+   String index (Model model) {
+
+      model.addAttribute("message", "some thing from controller");
+      var accountName = SecurityContextHolder.getContext().getAuthentication().getName();
+      model.addAttribute("accounts", Accounts.findAccount(accountName));
+      return "/Account/Index";
     }
 }

@@ -20,7 +20,11 @@
 
                 <li class="breadcrumb-item active">THUỘC TÍNH</li>
             </ol>
-    
+            <div class="form-group">
+                <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                    <a class="btn btn-primary btn-add" th:href="@{/Admin/AddAttribute}">Thêm Thuộc Tính</a>
+                </div>
+            </div>
             <div class="card-body">
                 <table class="table table-bordered" style="vertical-align:baseline">
                     <thead class="bg-dark" style="color:white">
@@ -53,11 +57,6 @@
     
                     </tbody>
                 </table>
-                <div class="form-group">
-                    <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                        <a class="btn btn-primary btn-add" th:href="@{/Admin/AddAttribute}">Thêm Thuộc Tính</a>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
