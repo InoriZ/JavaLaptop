@@ -8,8 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 // import groovyjarjarantlr4.v4.parse.ANTLRParser.id_return;
@@ -37,7 +36,7 @@ public class HomeController extends BaseController{
 
         Product test = Products.getProduct();
         // System.out.println(test.getName());
-        Carts.test();
+        Address.Test();
 
 
 

@@ -125,6 +125,10 @@ public class ProductCart implements Serializable{
         this.paymentPrice = paymentPrice;
     }
 
+    public Integer getTotal(){
+        return product.getPrice() * this.quantity;
+    }
+
     
 
 }

@@ -1,5 +1,6 @@
 package com.example.demo.Controller;
 
+import com.example.demo.Model.Address;
 import com.example.demo.SideModel.ReturnJsonObject;
 import com.example.demo.SideModel.SignUpModel;
 
@@ -8,8 +9,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 // import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 // import org.springframework.web.bind.annotation.RequestMethod;
@@ -86,8 +88,32 @@ public class AccountController extends BaseController{
     @RequestMapping("/Account/Cart")
    String Cart (Model model) {
 
-      model.addAttribute("message", "some thing from controller");
+      model.addAttribute("cart", Carts.GetCart());
+      model.addAttribute("address", Address.GetDFAddress());
+
 
       return "/Account/Cart";
+    }
+    @GetMapping("/Account/Address")
+    String Address(Model model){
+        model.addAttribute("listAddress", Address.GetListAddress());
+        return "/Account/Address";
+    }
+    @GetMapping("/Account/AddAddress")
+    String AddAddress(){
+        return "/Account/AddAddress";
+    }
+    @PostMapping("/Account/AddAddress")
+    @ResponseBody
+    Object AddAddress(String address, String phone, String receiver){
+        
+        var rs = Address.AddAddress(address, phone, receiver);
+        return rs;
+    }
+    @PostMapping("/Account/ChangeDFAddress")
+    @ResponseBody
+    Object ChangeDF(Integer id){
+        
+        return Address.ChangeDF(id);
     }
 }

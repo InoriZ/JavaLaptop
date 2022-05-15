@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="/layout/_layoutAdmin.html">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Địa chỉ</title>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <div class="container-fluid">
+            <!-- @if (Model.Count() == 0)
+    {
+        <input type="hidden" name="checkNull" value="0" />
+    }
+    else
+    {
+        <input type="hidden" name="checkNull" value="1" />
+
+    } -->
+            <h1 class="mt-4">ĐỊA CHỈ</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item"><a href="/account">Tài khoản</a></li>
+                <li class="breadcrumb-item active">Địa chỉ</li>
+            </ol>
+            <table class="table table-bordered">
+                <thead class="bg-dark text-light">
+                    <tr>
+                        <td>Địa chỉ</td>
+                        <td>Người nhận</td>
+                        <td>Số điện thoại</td>
+                        <td>Địa chỉ chính</td>
+
+
+                        
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr style="text-align:center" th:each="item : ${listAddress}">
+                        <td>
+                            <p th:text="${item.address.address}"><h5 style="color:black;max-width:400px"></h5></p>
+                        </td>
+                        <td>
+                            <p  th:text="${item.address.phone} "><h5 style="color:black"></h5></p>
+                        </td>
+                        <td>
+                            <p  th:text="${item.address.receiver} " ><h5 style="color:black"></h5></p>
+                        </td>
+                        <td>
+                            <input type="radio" name="isDefault" th:value="${item.address.idAddress}" th:checked="${item.isDefault}">
+                            <!-- <p  th:text="${item.isDefault} " ><h5 style="color:black"></h5></p> -->
+                        </td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="d-flex justify-content-end">
+                <a href="/Account/AddAddress" class="btn btn-danger" style="margin-left:20px">Thêm địa chỉ</a>
+            </div>
+
+        </div>
+        <script>
+            $('input[name="isDefault"]').change(function(){
+                var id = this.getAttribute('value');
+                $.post('/Account/ChangeDFAddress',{id:id},(r)=>{
+                    console.log(r);
+
+                })
+
+            })
+        </script>
+
+    </div>
+</body>
