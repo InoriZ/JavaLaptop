@@ -99,4 +99,10 @@ public class AccountController extends BaseController{
       model.addAttribute("accounts", Accounts.findAccount(accountName));
       return "/Account/Index";
     }
+    @RequestMapping("/Account/ChangePassword")
+   String changePassword (Model model) {
+
+      model.addAttribute("message", "some thing from controller");
+      return "/Account/ChangePassword";
+    }
 }
