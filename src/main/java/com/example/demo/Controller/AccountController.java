@@ -1,6 +1,5 @@
 package com.example.demo.Controller;
 
-
 import com.example.demo.SideModel.ReturnJsonObject;
 import com.example.demo.SideModel.SignUpModel;
 
@@ -18,122 +17,133 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 
-public class AccountController extends BaseController{
-	@RequestMapping("/SignAndLog")
-    String getPeople(Model model){
+public class AccountController extends BaseController {
+    @RequestMapping("/SignAndLog")
+    String getPeople(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
             return "/Account/SignAndLog";
         }
- 
+
         return "redirect:/";
-    
-        
+
     }
 
     @PostMapping("/Register")
     @ResponseBody
-    public Object SignUp(SignUpModel model){
-        
+    public Object SignUp(SignUpModel model) {
+
         var obj = Accounts.AddAccount(model);
 
         return obj;
     }
+
     @ResponseBody
     @RequestMapping("/LogSuccess")
-    public Object LogSuccess(){
+    public Object LogSuccess() {
         return new ReturnJsonObject(true, "Đăng nhập thành công, bạn sẽ quay về trang chủ", "/");
     }
+
     @ResponseBody
     @RequestMapping("/FailureLog")
-    public Object FailureLog(){
-        
+    public Object FailureLog() {
+
         return new ReturnJsonObject(false, "Đăng nhập thất bại, sai tài khoản hoặc mật khẩu", null);
     }
 
     @RequestMapping("/ForgetPassword")
-     String ForgetPassword(Model model) {
+    String ForgetPassword(Model model) {
 
-		model.addAttribute("message", "some thing from controller");
+        model.addAttribute("message", "some thing from controller");
 
-		return "/Account/ForgetPassword";
-	}
+        return "/Account/ForgetPassword";
+    }
 
     @RequestMapping("/Layout")
     String test(Model model) {
 
-       model.addAttribute("message", "some thing from controller");
+        model.addAttribute("message", "some thing from controller");
 
-       return "test";
-   }
+        return "test";
+    }
 
-   
-
-   @RequestMapping("/ChangePassword")
+    @RequestMapping("/ChangePassword")
     String ChangePassword(Model model) {
 
-       model.addAttribute("message", "some thing from controller");
+        model.addAttribute("message", "some thing from controller");
 
-       return "/Account/ChangePassword";
-   }
-
-   @RequestMapping("/Notfound")
-   String Error404 (Model model) {
-
-      model.addAttribute("message", "some thing from controller");
-
-      return "/Account/ERROR404";
+        return "/Account/ChangePassword";
     }
+
+    @RequestMapping("/Notfound")
+    String Error404(Model model) {
+
+        model.addAttribute("message", "some thing from controller");
+
+        return "/Account/ERROR404";
+    }
+
     @RequestMapping("/Account/Cart")
-   String Cart (Model model) {
+    String Cart(Model model) {
 
-      model.addAttribute("cart", Carts.GetCart());
-      model.addAttribute("address", Address.GetDFAddress());
+        model.addAttribute("cart", Carts.GetCart());
+        model.addAttribute("address", Address.GetDFAddress());
 
-
-      return "/Account/Cart";
+        return "/Account/Cart";
     }
+
     @GetMapping("/Account/Address")
-    String Address(Model model){
+    String Address(Model model) {
         model.addAttribute("listAddress", Address.GetListAddress());
         return "/Account/Address";
     }
+
     @GetMapping("/Account/AddAddress")
-    String AddAddress(){
+    String AddAddress() {
         return "/Account/AddAddress";
     }
+
     @PostMapping("/Account/AddAddress")
     @ResponseBody
-    Object AddAddress(String address, String phone, String receiver){
-        
+    Object AddAddress(String address, String phone, String receiver) {
+
         var rs = Address.AddAddress(address, phone, receiver);
         return rs;
     }
+
     @PostMapping("/Account/ChangeDFAddress")
     @ResponseBody
-    Object ChangeDF(Integer id){
-        
+    Object ChangeDF(Integer id) {
+
         return Address.ChangeDF(id);
     }
-    @RequestMapping("/Account/Index")
-   String index (Model model) {
 
-      model.addAttribute("message", "some thing from controller");
-      var accountName = SecurityContextHolder.getContext().getAuthentication().getName();
-      model.addAttribute("accounts", Accounts.findAccount(accountName));
-      return "/Account/Index";
+    @RequestMapping("/Account/Index")
+    String index(Model model) {
+
+        model.addAttribute("message", "some thing from controller");
+        var accountName = SecurityContextHolder.getContext().getAuthentication().getName();
+        model.addAttribute("accounts", Accounts.findAccount(accountName));
+        return "/Account/Index";
     }
 
     @RequestMapping("/Account/Invoice")
-    String invoice(Model model){
+    String invoice(Model model) {
         model.addAttribute("invoices", Invoices.getAllInvoice());
         return "/Account/Invoice";
     }
 
     @PostMapping("/Account/Charge")
     @ResponseBody
-    Object charge(){
-        
+    Object charge() {
+
         return Carts.charge();
+    }
+
+    @RequestMapping("/Account/ChangePassword")
+    String changePassword(Model model) {
+
+        model.addAttribute("message", "some thing from controller");
+        return "/Account/ChangePassword";
     }
 }
