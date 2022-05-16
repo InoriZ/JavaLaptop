@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="/layout/_layoutAccount.html">
+    layout:decorate="/layout/_layoutAdmin.html">
 
 <head>
     <meta charset="UTF-8">
@@ -22,8 +22,8 @@
     } -->
             <h1 class="mt-4">HOÁ ĐƠN</h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item"><a href="/account">Tài khoản</a></li>
-                <li class="breadcrumb-item active">Hoá đơn</li>
+                <li class="breadcrumb-item"><a href="/admin">Quản lý</a></li>
+                <li class="breadcrumb-item active">Quản lí hoá đơn</li>
             </ol>
             <table class="table table-bordered">
                 <thead class="bg-dark text-light">
@@ -51,7 +51,7 @@
                             <div  th:text="${item.status.statusName}"></div>
                         </td>
                         <td>
-                            <div ><a th:href="@{'/Account/InvoiceDetail/' + ${item.idInvoice}}"
+                            <div ><a th:href="@{'/Admin/InvoiceDetail/' + ${item.idInvoice}}"
                                 class="btn btn-primary"><i class="fa-solid fa-circle-info"></i></a></div>
                         </td>
                     </tr>

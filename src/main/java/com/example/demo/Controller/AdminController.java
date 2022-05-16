@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.UUID;
 
 import com.example.demo.Model.Attribute;
 import com.example.demo.Model.Category;
@@ -45,12 +46,12 @@ public class AdminController extends BaseController{
         model.addAttribute("listCategoryHome", Categories.GetAllCategory());
         return "/Admin/Category";
     }
-    @RequestMapping("/Admin/InvoiceDetail")
-    String invoice(Model model){
-        model.addAttribute("something","some thing from controller");
-        model.addAttribute("listCategoryHome", Categories.GetAllCategory());
-        return "/Admin/InvoiceDetail";
-    }
+    // @RequestMapping("/Admin/InvoiceDetail")
+    // String invoice(Model model){
+    //     model.addAttribute("something","some thing from controller");
+    //     model.addAttribute("listCategoryHome", Categories.GetAllCategory());
+    //     return "/Admin/InvoiceDetail";
+    // }
     @RequestMapping("/Admin/AddCategory")
     String addCategory(Model model){
         model.addAttribute("something","some thing from controller");
@@ -140,6 +141,21 @@ public class AdminController extends BaseController{
         model.addAttribute("product", Products.getProductbyid(idProduct));
         return "/Admin/EditProduct";
     }
+    @RequestMapping("/Admin/Invoice")
+    String getAllInvoice(Model model){
+        model.addAttribute("invoices", Invoices.getAllInvoice());
+        return "/Admin/invoice";
+    }
+    @RequestMapping("/Admin/InvoiceDetail/{id}")
+    String invoiceDetail(@PathVariable(value = "id") UUID id, Model model){
+        
+        var invoice = Invoices.getById(id);
+        model.addAttribute("invoice", invoice);
+        model.addAttribute("status",Invoices.getAllStatus() );
+        return "/Admin/InvoiceDetail";
+    }
+
+    
     
    
 }

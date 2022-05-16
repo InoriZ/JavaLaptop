@@ -1,5 +1,7 @@
 package com.example.demo.Controller;
 
+import java.util.UUID;
+
 import com.example.demo.SideModel.ReturnJsonObject;
 import com.example.demo.SideModel.SignUpModel;
 
@@ -9,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -129,7 +132,7 @@ public class AccountController extends BaseController {
 
     @RequestMapping("/Account/Invoice")
     String invoice(Model model) {
-        model.addAttribute("invoices", Invoices.getAllInvoice());
+        model.addAttribute("invoices", Invoices.getAllAccountInvoice());
         return "/Account/Invoice";
     }
 
@@ -145,5 +148,13 @@ public class AccountController extends BaseController {
 
         model.addAttribute("message", "some thing from controller");
         return "/Account/ChangePassword";
+    }
+
+    @RequestMapping("/Account/InvoiceDetail/{id}")
+    String invoiceDetail(@PathVariable(value = "id") UUID id, Model model){
+        
+        var invoice = Invoices.getById(id);
+        model.addAttribute("invoice", invoice);
+        return "/Account/InvoiceDetail";
     }
 }
