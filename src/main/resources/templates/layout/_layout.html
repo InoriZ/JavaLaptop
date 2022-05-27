@@ -28,7 +28,7 @@
                 </a>
         </div>
             <div class="search-container">
-                <form action="/action_page.php">
+                <form action="/Search" method="GET">
                     <input type="text" placeholder="Tìm kiếm sản phẩm..." name="search">
                     <button type="submit">Tìm kiếm</button>
                 </form>
@@ -42,7 +42,7 @@
     <div id="navbar" class="">
         <div class="container">
             <ul id="nav">
-                <li><a href="#">Home</a></li>
+                <li><a href="/Home">Home</a></li>
                 <li>
                     <a href="#">Sản Phẩm</a>
 
@@ -58,6 +58,8 @@
                         </div>
                     </div>
                 </li>
+                <li ><a sec:authorize="isAuthenticated()" href="/Account">Tài khoản</a></li>
+
 
                 <div class="login-section">
                     <a sec:authorize="isAuthenticated()" href="/Logout">Đăng xuất</a>

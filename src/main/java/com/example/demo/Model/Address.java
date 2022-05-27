@@ -24,7 +24,7 @@ public class Address implements Serializable {
     Integer idAddress;
     String address;
     String phone;
-    String receiver;
+    String reciever;
 
     @JsonIgnore
     @OneToMany(mappedBy = "address")
@@ -42,7 +42,7 @@ public class Address implements Serializable {
         this.idAddress = idAddress;
         this.address = address;
         this.phone = phone;
-        this.receiver = receiver;
+        this.reciever = receiver;
     }
 
 
@@ -51,14 +51,14 @@ public class Address implements Serializable {
         this.idAddress = idAddress;
         this.address = address;
         this.phone = phone;
-        this.receiver = receiver;
+        this.reciever = receiver;
         this.accountAddresses = accountAddresses;
     }
 
     public Address(String address, String phone, String receiver) {
         this.address = address;
         this.phone = phone;
-        this.receiver = receiver;
+        this.reciever = receiver;
     }
 
 
@@ -87,11 +87,11 @@ public class Address implements Serializable {
     }
 
     public String getReceiver() {
-        return receiver;
+        return reciever;
     }
 
     public void setReceiver(String receiver) {
-        this.receiver = receiver;
+        this.reciever = receiver;
     }
 
     public List<AccountAddress> getAccountAddresses() {

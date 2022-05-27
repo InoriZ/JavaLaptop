@@ -2,6 +2,7 @@ package com.example.demo.Controller;
 
 import java.util.UUID;
 
+import com.example.demo.Model.Address;
 import com.example.demo.SideModel.ReturnJsonObject;
 import com.example.demo.SideModel.SignUpModel;
 
@@ -90,7 +91,11 @@ public class AccountController extends BaseController {
     String Cart(Model model) {
 
         model.addAttribute("cart", Carts.GetCart());
-        model.addAttribute("address", Address.GetDFAddress());
+        var dfaddress = Address.GetDFAddress();
+        if(dfaddress == null){
+            dfaddress = new Address("Không có", "Không có", "Không có");
+        }
+        model.addAttribute("address", dfaddress);
 
         return "/Account/Cart";
     }
@@ -121,7 +126,10 @@ public class AccountController extends BaseController {
         return Address.ChangeDF(id);
     }
 
-    @RequestMapping("/Account/Index")
+  
+    
+    @RequestMapping(value = {"/Account/Index","/Account"})
+
     String index(Model model) {
 
         model.addAttribute("message", "some thing from controller");
@@ -157,4 +165,7 @@ public class AccountController extends BaseController {
         model.addAttribute("invoice", invoice);
         return "/Account/InvoiceDetail";
     }
+    // @PostMapping("/Account/ChangePass")
+    // @ResponseBody
+    // Object changePass(string cure)
 }

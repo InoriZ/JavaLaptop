@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class AdminController extends BaseController{
     private long copy;
-    @RequestMapping("/Admin/Product")
+    @RequestMapping(value = {"/Admin/Product","/Admin","/admin"})
     String product(Model model){
         model.addAttribute("listProduct",Products.getAllProduct());
         model.addAttribute("listCategoryHome", Categories.GetAllCategory());

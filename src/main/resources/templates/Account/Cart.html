@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>Giỏ hàng</title>
     <!-- CSS only -->
-    
+
 </head>
 
 <body>
@@ -42,19 +42,21 @@
                 <tbody>
                     <tr class="product_tr" th:each="item: ${cart.ProductCarts}">
                         <td th:text="${item.product.name}"></td>
-                        <td >
-                            <img width="120" th:src="@{'/Image/ImageProduct/'+${item.product.imageUrl}}"
-                                                 alt="@{$(item.product.name)}" />
-                        </td>
-                        
-
-
-                        <td >
-                            <div class="money" th:text="${item.product.price}"></div>
-                            </td>
                         <td>
-                            <input type="number" class="quantity" name="quantity" th:value="${item.quantity}" min="0" required /></td>
-                            
+                            <img width="120" th:src="@{'/Image/ImageProduct/'+${item.product.imageUrl}}"
+                                alt="@{$(item.product.name)}" />
+                        </td>
+
+
+
+                        <td>
+                            <div class="money" th:text="${item.product.price}"></div>
+                        </td>
+                        <td>
+                            <input type="number" class="quantity" name="quantity" th:value="${item.quantity}" min="0"
+                                required />
+                        </td>
+
                         </td>
                         <td>
                             <div class="money" th:text="${item.getTotal()}"></div>
@@ -71,17 +73,17 @@
             <div class="d-flex justify-content-end">
                 <p>Tổng cộng: <b class="money" th:text="${cart.getCartTotal()}"></b></p>
             </div>
-            
+
             <div class="d-flex justify-content-end" style="margin-bottom:10px;margin-top:10px">
                 Địa chỉ: <b th:text="${address.address}"></b>
-                </div>
+            </div>
             <div class="d-flex justify-content-end" style="margin-bottom:10px;margin-top:10px">
                 Người nhận: <b th:text="${address.receiver}"></b>
-                
+
             </div>
             <div class="d-flex justify-content-end" style="margin-bottom:10px;margin-top:10px">
                 Số điện thoại: <b th:text="${address.phone}"></b>
-                
+
             </div>
             <div class="d-flex justify-content-end" style="margin-bottom:10px;margin-top:10px">
                 <a href="/Account/Address" class="btn btn-primary btn-edit">Chỉnh địa chỉ.</a>
@@ -93,32 +95,34 @@
 
                 <a href="/" class="btn btn-outline-primary">Tiếp tục mua sắm</a>
 
-                <button name="charge" id="charge" type="button" class="btn btn-danger" style="margin-left:20px">Thanh toán!</button>
+                <button id="charge" class="btn btn-danger" style="margin-left:20px">Thanh toán!</button>
             </div>
 
         </div>
         <script>
 
-            $().ready(function(){
-                $('.money').each(function(){
+            $().ready(function () {
+                $('.money').each(function () {
                     var text = $(this).text();
                     $(this).text(numberWithCommas(text) + ' VNĐ')
+                })
+                $("button[id='charge']").click(function () {
+                    
+                    $.post('/Account/Charge',(r)=>{
+                        console.log(r);
+                        alert(r.Result)
+                        if(r.Status == true){
+                            window.location.href = "/Account/Invoice"
+                        }
+                    })
                 })
             })
 
             function numberWithCommas(x) {
-            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            
-            $('#charge').click(()=>{
-                $.post('/Account/Charge',{},(r)=>{
-                    alert(r.Result);
-                    if (r.Status == true) {
-                        window.location.href = "/Account/Invoice";
-                        
-                    }
-                })
-            })
-        }
+                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+
+            }
         </script>
     </div>
 </body>
