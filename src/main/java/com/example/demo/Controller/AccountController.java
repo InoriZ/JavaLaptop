@@ -165,7 +165,10 @@ public class AccountController extends BaseController {
         model.addAttribute("invoice", invoice);
         return "/Account/InvoiceDetail";
     }
-    // @PostMapping("/Account/ChangePass")
-    // @ResponseBody
-    // Object changePass(string cure)
+    @PostMapping("/Account/ChangePass")
+    @ResponseBody
+    Object changePass(String current,String newPass){
+        var rs = Accounts.changePassword(current, newPass);
+        return rs;
+    }
 }

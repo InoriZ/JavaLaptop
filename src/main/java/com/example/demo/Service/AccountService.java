@@ -2,6 +2,8 @@ package com.example.demo.Service;
 
 
 
+import java.util.Arrays;
+
 import com.example.demo.Helper.Helper;
 import com.example.demo.Model.Account;
 import com.example.demo.SideModel.ReturnJsonObject;
@@ -34,6 +36,17 @@ public class AccountService extends BaseService{
     }
     public Account findAccount(String user){
         return Accounts.findByUser(user);
+    }
+    public Object changePassword(String current, String newPass){
+        var Account = super.getCurrentAccount();
+        var checkPass = Arrays.equals(Account.getPassword(), Helper.Hash(current));
+        if (checkPass) {
+            Account.setPassword(Helper.Hash(newPass));
+            Accounts.saveAndFlush(Account);
+            return new ReturnJsonObject(checkPass, "Đổi mật khẩu thành công", "");
+
+        }
+        return new ReturnJsonObject(checkPass, "Mật khẩu cũ không đúng", "");
     }
    
 }
