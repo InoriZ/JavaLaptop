@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="/layout/_layoutAdmin.html">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <!-- CSS only -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <!-- JavaScript Bundle with Popper -->
 
 </head>
+
 <body>
     <div layout:fragment="content">
         <div class="container-fluid">
@@ -34,25 +37,44 @@
                         </tr>
                     </thead>
                     <tbody>
-                            <tr style="text-align:center" th:each="category : ${listCategory}">   
-                                <td>
-                                    <p th:text="${category.CategoryName}"><h5 style="color:black;max-width:400px"></h5></p>
-                                </td>
-                                <td>
-                                    <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style="margin-top: 0px !important">
-                                          <a th:href="@{/Admin/EditCategory/{idCategory}(idCategory=${category.idCategory})}" class="btn btn-primary"> SỬA </a>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0" style="margin-top:0px !important">
-                                        <a th:href="@{/Admin/DeleteCategory/{idCategory}(idCategory=${category.idCategory})}" class="btn btn-primary"> XÓA </a>
-                                    </div>
-                                </td>                                
-                            </tr>  
-                            
+                        <tr style="text-align:center" th:each="category : ${listCategory}">
+                            <td>
+                                <p th:text="${category.CategoryName}">
+                                <h5 style="color:black;max-width:400px"></h5>
+                                </p>
+                            </td>
+                            <td>
+                                <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0"
+                                    style="margin-top: 0px !important">
+                                    <a th:href="@{/Admin/EditCategory/{idCategory}(idCategory=${category.idCategory})}"
+                                        class="btn btn-primary"> SỬA </a>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0"
+                                    style="margin-top:0px !important">
+                                    <button class="btn btn-primary" th:attr="cid=${category.idCategory}"> XÓA </button>
+                                </div>
+                            </td>
+                        </tr>
+
                     </tbody>
                 </table>
             </div>
+            <script>
+                $().ready(() => {
+                    $('button').click(function () {
+                        // console.log($(this).attr("cid"));
+                        $.post('/Admin/DeleteCategory',{id: $(this).attr('cid')},(r)=>{
+                            alert(r.Result)
+                            if(r.Status == true){
+                                window.location.href = window.location.href
+                            }
+                        })
+                    })
+                    
+                })
+            </script>
         </div>
     </div>
 </body>

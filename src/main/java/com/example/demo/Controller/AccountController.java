@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @Controller
 
@@ -62,14 +64,15 @@ public class AccountController extends BaseController {
 
         return "/Account/ForgetPassword";
     }
+    @PostMapping("/ForgetPassword")
+    @ResponseBody
+    Object ForgetPassword(String Email) {
 
-    @RequestMapping("/Layout")
-    String test(Model model) {
-
-        model.addAttribute("message", "some thing from controller");
-
-        return "test";
+        
+        var rs = Accounts.forgotPassword(Email);
+        return rs;
     }
+
 
     @RequestMapping("/ChangePassword")
     String ChangePassword(Model model) {
@@ -89,6 +92,7 @@ public class AccountController extends BaseController {
 
     @RequestMapping("/Account/Cart")
     String Cart(Model model) {
+        model.addAttribute("listCategoryHome", Categories.GetAllCategory());
 
         model.addAttribute("cart", Carts.GetCart());
         var dfaddress = Address.GetDFAddress();
@@ -103,11 +107,15 @@ public class AccountController extends BaseController {
     @GetMapping("/Account/Address")
     String Address(Model model) {
         model.addAttribute("listAddress", Address.GetListAddress());
+        model.addAttribute("listCategoryHome", Categories.GetAllCategory());
+
         return "/Account/Address";
     }
 
     @GetMapping("/Account/AddAddress")
-    String AddAddress() {
+    String AddAddress(Model model) {
+        model.addAttribute("listCategoryHome", Categories.GetAllCategory());
+
         return "/Account/AddAddress";
     }
 
@@ -135,12 +143,14 @@ public class AccountController extends BaseController {
         model.addAttribute("message", "some thing from controller");
         var accountName = SecurityContextHolder.getContext().getAuthentication().getName();
         model.addAttribute("accounts", Accounts.findAccount(accountName));
+        model.addAttribute("listCategoryHome", Categories.GetAllCategory());
         return "/Account/Index";
     }
 
     @RequestMapping("/Account/Invoice")
     String invoice(Model model) {
         model.addAttribute("invoices", Invoices.getAllAccountInvoice());
+        model.addAttribute("listCategoryHome", Categories.GetAllCategory());
         return "/Account/Invoice";
     }
 
@@ -154,7 +164,7 @@ public class AccountController extends BaseController {
     @RequestMapping("/Account/ChangePassword")
     String changePassword(Model model) {
 
-        model.addAttribute("message", "some thing from controller");
+        model.addAttribute("listCategoryHome", Categories.GetAllCategory());
         return "/Account/ChangePassword";
     }
 
@@ -163,6 +173,7 @@ public class AccountController extends BaseController {
         
         var invoice = Invoices.getById(id);
         model.addAttribute("invoice", invoice);
+        model.addAttribute("listCategoryHome", Categories.GetAllCategory());
         return "/Account/InvoiceDetail";
     }
     @PostMapping("/Account/ChangePass")
@@ -174,7 +185,15 @@ public class AccountController extends BaseController {
     @PostMapping("/Account/changeQuantity")
     @ResponseBody
     Object ChangeQuantity(Integer quantity, Integer id){
-        
+        Carts.Changequantity(quantity, id);
         return quantity.toString() + " " + id.toString();
     }
+    @PostMapping(value="/Admin/DeleteProduct")
+    @ResponseBody
+    public Object postMethodName(Integer id) {
+        var rs = Products.deleteProductbyId(id);
+        
+        return rs;
+    }
+    
 }

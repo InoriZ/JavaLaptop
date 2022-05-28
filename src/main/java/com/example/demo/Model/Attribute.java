@@ -21,7 +21,7 @@ public class Attribute {
     @Column(name = "isdelete")
     Boolean isDelete;
     @JsonIgnore
-    @OneToMany(mappedBy = "attribute")
+    @OneToMany(mappedBy = "attribute",cascade = CascadeType.ALL)
     List<ProductAttribute> productAttributes = new ArrayList<>();
 
     public int getId() {

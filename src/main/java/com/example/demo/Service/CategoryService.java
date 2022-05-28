@@ -1,6 +1,9 @@
 package com.example.demo.Service;
 
 import com.example.demo.Model.Category;
+import com.example.demo.Model.Invoice;
+import com.example.demo.Model.Product;
+import com.example.demo.SideModel.ReturnJsonObject;
 
 import org.springframework.stereotype.Service;
 
@@ -29,8 +32,27 @@ public class CategoryService extends BaseService{
         return category;
     }
     
-    public void deleteCategorybyId (int idCategory){
-        Categories.deleteById(idCategory);
+    public Object deleteCategorybyId (int idCategory){
+        
+        var cate = Categories.getById(idCategory);
+        var listProduct = Products.findByCategory(cate);
+        for (Product product : listProduct) {
+            for (var cart : product.getProductCarts()) {
+                var invoice = cart.getCart().getInvoice();
+                if(invoice !=null){
+                    return new ReturnJsonObject(false, "Không thể xoá danh mục này. Đã có khách hàng mua sản phẩm trong danh mục này", "");
+
+                }
+
+            }
+        }
+        Categories.delete(cate);
+
+        return new ReturnJsonObject(true, "Xoá danh mục thành công", "");
+
+
+        
+
     }
 
 }

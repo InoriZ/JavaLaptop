@@ -37,7 +37,7 @@ public class AddressService extends BaseService {
         }
         var accountAddresses = new AccountAddress(account, newAddress, isDefault);
         AccountAddress.save(accountAddresses);
-        return new ReturnJsonObject(true, "result", "/Account/Address");
+        return new ReturnJsonObject(true, "Thêm địa chỉ thành công", "/Account/Address");
         
     }
     public ReturnJsonObject ChangeDF(Integer id){

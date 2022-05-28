@@ -7,6 +7,7 @@ import com.example.demo.Model.Address;
 import com.example.demo.Model.Cart;
 import com.example.demo.Model.Invoice;
 import com.example.demo.Model.ProductCart;
+import com.example.demo.Model.ProductCartKey;
 import com.example.demo.SideModel.ReturnJsonObject;
 
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -99,6 +100,35 @@ public class CartService extends BaseService {
         Carts.save(currentCart);
         
         return new ReturnJsonObject(true, "Đặt hàng thành công", "/Account/Invoice");
+        
+
+    }
+    public void Changequantity(Integer quantity, Integer idProduct) {
+        var account = super.getCurrentAccount();
+        Cart cart = null; 
+        for (var cartItem : account.getCarts()) {
+            if(cartItem.getIsExpired() == false){
+                cart = cartItem;
+                break;
+            }
+                
+        }
+        if(cart != null){
+            var ProductCartKey = new ProductCartKey(cart.getIdCart(), idProduct);
+            var ProductCart = ProductCarts.getById(ProductCartKey);
+            if(quantity == 0){
+                ProductCarts.delete(ProductCart);
+            }
+            else{
+                ProductCart.setQuantity(quantity);
+                ProductCarts.save(ProductCart);
+
+            }
+            
+
+        }
+        
+
 
     }
 }

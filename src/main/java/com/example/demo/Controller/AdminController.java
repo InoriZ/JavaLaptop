@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -72,10 +73,11 @@ public class AdminController extends BaseController{
         return "/Admin/editCategory";
     }
 
-    @RequestMapping("/Admin/DeleteCategory/{idCategory}")
-    String deleteCategory(@PathVariable (value = "idCategory") int idCategory){
-        this.Categories.deleteCategorybyId(idCategory);
-        return "redirect:/Admin/Category";
+    @PostMapping("/Admin/DeleteCategory")
+    @ResponseBody
+    Object deleteCategory( Integer id){
+        var rs = this.Categories.deleteCategorybyId(id);
+        return rs;
     }
 
     @RequestMapping("/Admin/AddAttribute")
@@ -144,10 +146,13 @@ public class AdminController extends BaseController{
     @RequestMapping("/Admin/Invoice")
     String getAllInvoice(Model model){
         model.addAttribute("invoices", Invoices.getAllInvoice());
+        model.addAttribute("listCategoryHome", Categories.GetAllCategory());
+
         return "/Admin/invoice";
     }
     @RequestMapping("/Admin/InvoiceDetail/{id}")
     String invoiceDetail(@PathVariable(value = "id") UUID id, Model model){
+        model.addAttribute("listCategoryHome", Categories.GetAllCategory());
         
         var invoice = Invoices.getById(id);
         model.addAttribute("invoice", invoice);

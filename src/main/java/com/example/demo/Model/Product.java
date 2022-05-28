@@ -20,11 +20,11 @@ public class Product implements Serializable {
     Category category;
     String name;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
     @JsonIgnore
     List<ProductAttribute> productAttributes = new ArrayList<>();
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
     List<ProductCart> productCarts = new ArrayList<>();
     Integer price;
     Integer stock;

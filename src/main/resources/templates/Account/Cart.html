@@ -51,29 +51,29 @@
 
                         <td>
                             <div class="money" th:text="${item.product.price}"></div>
-                            <div style="display: none;" th:text="${item.product.price}"></div>
+                            <div style="display: none;" class="unitprice" th:value="${item.product.price}"></div>
 
                         </td>
                         <td>
-                            <input type="number" class="quantity" name="quantity" th:value="${item.quantity}" th:attr="pid=${item.id.idProduct}" min="0"
-                                required />
+                            <input type="number" class="quantity" name="quantity" th:value="${item.quantity}"
+                                th:attr="pid=${item.id.idProduct}" min="0" required />
                         </td>
 
                         </td>
                         <td>
-                            <div class="money" th:text="${item.getTotal()}"></div>
+                            <div class="money totalItem" th:text="${item.getTotal()}"></div>
 
 
                         </td>
-                        <td><button name="delete" class="btn btn-outline-danger" cid="@item.IDCart"
-                                pid="@item.IDProduct"><i class="fas fa-trash"></i></button></td>
+                        <td><button name="delete" class="btn btn-outline-danger" 
+                            th:attr="pid=${item.id.idProduct}"><i class="fas fa-trash"></i></button></td>
 
 
                     </tr>
                 </tbody>
             </table>
             <div class="d-flex justify-content-end">
-                <p>Tổng cộng: <b class="money" th:text="${cart.getCartTotal()}"></b></p>
+                <p>Tổng cộng: <b class="money total" th:text="${cart.getCartTotal()}"></b></p>
             </div>
 
             <div class="d-flex justify-content-end" style="margin-bottom:10px;margin-top:10px">
@@ -106,29 +106,49 @@
             $().ready(function () {
                 updateMoney();
                 $("button[id='charge']").click(function () {
-                    
-                    $.post('/Account/Charge',(r)=>{
+
+                    $.post('/Account/Charge', (r) => {
                         console.log(r);
                         alert(r.Result)
-                        if(r.Status == true){
+                        if (r.Status == true) {
                             window.location.href = "/Account/Invoice"
                         }
                     })
                 })
-                $("input[name='quantity']").change(function(){
-                    // console.log(this.value);
-                    $.post('/Account/changeQuantity',{quantity: this.value,id: $(this).attr("pid"),},(r)=>{
-                        console.log(r);
+                $("input[name='quantity']").change(function () {
+                    $.post('/Account/changeQuantity',{quantity: this.value,id: $(this).attr("pid"),},()=>{
+                        if(this.value == 0){
+                            window.location.href = window.location.href;
+                        }
+                        calculate();
+
                     })
                 })
+                $('button[name="delete"]').click(()=>{
+                    console.log(this);
+                })
             })
+
+            function calculate() {
+                var total = 0;
+                $('.product_tr').each(function () {
+                    var quantity = parseInt($(this).find('.quantity').val());
+                    var unitprice = ($(this).find('.unitprice').attr("value"));
+                    console.log([quantity,unitprice])
+                    rowtotal = (quantity * unitprice)
+
+                    $(this).find('.totalItem').text(numberWithCommas(rowtotal) + ' VNĐ');
+                    total += rowtotal;
+                })
+                $('.total').text(numberWithCommas(total) + ' VNĐ');
+            }
 
             function numberWithCommas(x) {
                 return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
 
             }
-            function updateMoney(){
+            function updateMoney() {
                 $('.money').each(function () {
                     var text = $(this).text();
                     $(this).text(numberWithCommas(text) + ' VNĐ')
