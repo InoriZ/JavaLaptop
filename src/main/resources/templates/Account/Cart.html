@@ -51,9 +51,11 @@
 
                         <td>
                             <div class="money" th:text="${item.product.price}"></div>
+                            <div style="display: none;" th:text="${item.product.price}"></div>
+
                         </td>
                         <td>
-                            <input type="number" class="quantity" name="quantity" th:value="${item.quantity}" min="0"
+                            <input type="number" class="quantity" name="quantity" th:value="${item.quantity}" th:attr="pid=${item.id.idProduct}" min="0"
                                 required />
                         </td>
 
@@ -102,10 +104,7 @@
         <script>
 
             $().ready(function () {
-                $('.money').each(function () {
-                    var text = $(this).text();
-                    $(this).text(numberWithCommas(text) + ' VNĐ')
-                })
+                updateMoney();
                 $("button[id='charge']").click(function () {
                     
                     $.post('/Account/Charge',(r)=>{
@@ -116,12 +115,24 @@
                         }
                     })
                 })
+                $("input[name='quantity']").change(function(){
+                    // console.log(this.value);
+                    $.post('/Account/changeQuantity',{quantity: this.value,id: $(this).attr("pid"),},(r)=>{
+                        console.log(r);
+                    })
+                })
             })
 
             function numberWithCommas(x) {
                 return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
 
+            }
+            function updateMoney(){
+                $('.money').each(function () {
+                    var text = $(this).text();
+                    $(this).text(numberWithCommas(text) + ' VNĐ')
+                })
             }
         </script>
     </div>

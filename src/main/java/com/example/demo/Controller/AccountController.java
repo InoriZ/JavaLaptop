@@ -171,4 +171,10 @@ public class AccountController extends BaseController {
         var rs = Accounts.changePassword(current, newPass);
         return rs;
     }
+    @PostMapping("/Account/changeQuantity")
+    @ResponseBody
+    Object ChangeQuantity(Integer quantity, Integer id){
+        
+        return quantity.toString() + " " + id.toString();
+    }
 }
