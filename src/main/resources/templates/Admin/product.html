@@ -24,7 +24,12 @@
             <div class="form-group">
                 <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
                     <a class="btn btn-primary btn-add" th:href="@{/Admin/AddProduct}">Thêm Sản Phẩm</a>
+                    <form action="/Admin/SearchProduct" method="get">
+                        <input type="text" name="searcString">
+                        <button class="btn btn-outline-danger">Tìm kiếm</button>
+                    </form>
                 </div>
+                
             </div>
             <div class="card-body">
                 <table class="table table-bordered" style="vertical-align:baseline">
